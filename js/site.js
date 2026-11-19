@@ -23,8 +23,9 @@
       dots.forEach((d, k) => d.setAttribute('aria-current', String(k === current)));
       slider.dataset.slide = String(current + 1);
     };
-    $('[data-prev]', slider).addEventListener('click', () => show(current - 1));
-    $('[data-next]', slider).addEventListener('click', () => show(current + 1));
+    // Один слайд (в WordPress так бывает, если в «Баннере» один пункт): без стрелок, точек и автопрокрутки
+    $('[data-prev]', slider)?.addEventListener('click', () => show(current - 1));
+    $('[data-next]', slider)?.addEventListener('click', () => show(current + 1));
     dots.forEach((d, k) => d.addEventListener('click', () => show(k)));
     slider.addEventListener('keydown', (e) => {
       if (e.target.closest('input, textarea, select')) return;
@@ -35,7 +36,7 @@
     // ---- Автопрокрутка, 5 с на слайд. Таймер — CSS-анимация полоски на активной точке:
     // её пауза (наведение, фокус с клавиатуры, hero вне экрана) останавливает и листание.
     // При «уменьшить движение» анимации нет, значит, нет и автопрокрутки.
-    if (!reduce.matches) {
+    if (!reduce.matches && slides.length > 1) {
       slider.setAttribute('data-autoplay', '');
       slider.addEventListener('animationend', (e) => { if (e.animationName === 'dot-progress') show(current + 1); });
       if ('IntersectionObserver' in window) {
@@ -204,8 +205,9 @@
         });
       }
 
-      // 4. Карточки товаров «ложатся на стол» при появлении (один раз). Без opacity: товары видны и до срабатывания триггера
-      if ($('.product:not([hidden])')) {
+      // 4. Карточки товаров «ложатся на стол» при появлении (один раз). Без opacity: товары видны и до срабатывания триггера.
+      // В каталоге не анимируем: там список меняется от фильтров, и карточки должны стоять сразу (просьба Farrukh 19.11)
+      if ($('.product:not([hidden])') && !$('[data-catalog-page]')) {
         gsap.from('.product:not([hidden])', {
           rotateX: desktop ? 14 : 0, y: desktop ? 40 : 24, z: desktop ? -40 : 0, transformPerspective: 1200,
           duration: 0.7, ease: 'power3.out', stagger: desktop ? 0.06 : 0.04,
