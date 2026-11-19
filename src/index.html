@@ -3,22 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="only light">
 <meta name="robots" content="noindex, nofollow">
 <title>DIGITECH: камеры, ИБП и турникеты в Ташкенте</title>
 <meta name="description" content="Видеонаблюдение, ИБП, сетевое оборудование, турникеты и шлагбаумы со склада в Ташкенте. Цены в сумах, подбор инженером, монтаж и доставка по Узбекистану.">
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="preload" as="image" href="img/hero-photo-1376.webp" imagesrcset="img/hero-photo-900.webp 900w, img/hero-photo-1376.webp 1376w" imagesizes="100vw" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=3">
 </head>
 <body>
 <a class="skip" href="#main">К содержанию</a>
 
-<div class="topbar">
+<aside class="topbar" aria-label="Режим работы и контакты">
   <div class="container topbar__in">
     <ul>
-      <li><i data-icon="shield-check"></i>20+ лет на рынке<span class="hide-sm">&nbsp;систем безопасности</span></li>
+      <li><i data-icon="shield-check"></i><span>20+ лет на рынке<span class="hide-sm"> систем безопасности</span></span></li>
       <li><i data-icon="truck"></i>Доставка по всему Узбекистану</li>
     </ul>
     <ul class="topbar__right">
@@ -26,20 +28,20 @@
       <li><a href="tel:+998901887880"><i data-icon="phone"></i>+998 90 188 78 80</a></li>
     </ul>
   </div>
-</div>
+</aside>
 
 <header class="header" data-header>
   <div class="container header__main">
-    <a class="header__logo" href="index.html" aria-label="DIGITECH, на главную"><img src="img/logo-on-light.png" width="881" height="185" alt="DIGITECH"></a>
+    <a class="header__logo" href="index.html" aria-label="DIGITECH, на главную"><img src="img/logo-on-light.webp" srcset="img/logo-on-light.webp 1x, img/logo-on-light-2x.webp 2x" width="400" height="84" alt="DIGITECH"></a>
     <div class="catalog" data-catalog>
-      <button class="btn btn--blue catalog__toggle" type="button" aria-expanded="false" aria-controls="mega"><i data-icon="layout-grid"></i>Каталог товаров<i data-icon="chevron-down" class="chev"></i></button>
+      <button class="btn btn--blue catalog__toggle" type="button" aria-expanded="false" aria-controls="mega"><i data-icon="layout-grid"></i><span class="catalog__label">Каталог товаров</span><i data-icon="chevron-down" class="chev"></i></button>
       <div class="mega" id="mega" hidden>
-        <a href="#hits" data-tab-link="video"><img src="img/p-camera.webp" alt="" width="800" height="600">Видеонаблюдение</a>
-        <a href="#hits" data-tab-link="ups"><img src="img/p-ups-tower.webp" alt="" width="800" height="600">ИБП</a>
-        <a href="#hits"><img src="img/p-switch.webp" alt="" width="800" height="600">Сетевое оборудование</a>
-        <a href="#hits" data-tab-link="turn"><img src="img/p-elt811.webp" alt="" width="800" height="600">Турникеты</a>
-        <a href="#hits"><img src="img/p-bollards.webp" alt="" width="800" height="600">Шлагбаумы и болларды</a>
-        <a href="#hits" data-tab-link="vent"><img src="img/p-recuperator.webp" alt="" width="800" height="600">Вентиляция</a>
+        <a href="#hits" data-tab-link="video"><img src="img/p-camera.webp" alt="" width="800" height="600" loading="lazy">Видеонаблюдение</a>
+        <a href="#hits" data-tab-link="ups"><img src="img/p-ups-tower.webp" alt="" width="800" height="600" loading="lazy">ИБП</a>
+        <a href="#hits" data-tab-link="all"><img src="img/p-switch.webp" alt="" width="800" height="600" loading="lazy">Сетевое оборудование</a>
+        <a href="#hits" data-tab-link="turn"><img src="img/p-elt811.webp" alt="" width="800" height="600" loading="lazy">Турникеты</a>
+        <a href="#hits" data-tab-link="all"><img src="img/p-bollards.webp" alt="" width="800" height="600" loading="lazy">Шлагбаумы и болларды</a>
+        <a href="#hits" data-tab-link="vent"><img src="img/p-recuperator.webp" alt="" width="800" height="600" loading="lazy">Вентиляция</a>
       </div>
     </div>
     <form class="search" role="search" action="#hits">
@@ -51,24 +53,27 @@
       <i data-icon="phone"></i>
       <div><a href="tel:+998901887880">+998 90 188 78 80</a><a class="link" href="#consult" data-open-dialog="dlg-consult" data-topic="Обратный звонок">Обратный звонок</a></div>
     </div>
-    <a class="header__cart" href="#hits" aria-label="Корзина"><i data-icon="shopping-cart"></i><span class="badge" data-cart-count>0</span></a>
+    <a class="header__cart" href="#hits"><i data-icon="shopping-cart"></i><span class="visually-hidden">Корзина, товаров:</span><span class="badge" data-cart-count>0</span></a>
     <button class="round header__menu" type="button" aria-expanded="false" aria-controls="nav" aria-label="Меню" data-menu><i data-icon="menu"></i></button>
   </div>
-  <nav class="nav" id="nav" aria-label="Основное меню">
-    <div class="container">
-      <ul>
-        <li><a href="#about">О компании</a></li>
-        <li><a href="#strip">Доставка и оплата</a></li>
-        <li><a href="#features">Гарантия</a></li>
-        <li><a href="#consult">Услуги</a></li>
-        <li><a href="#contacts">Контакты</a></li>
-      </ul>
-    </div>
-  </nav>
 </header>
+<nav class="nav" id="nav" aria-label="Основное меню">
+  <div class="container">
+    <ul>
+      <li><a href="#services">Услуги</a></li>
+      <li><a href="#hits">Каталог</a></li>
+      <li><a href="#strip">Доставка и оплата</a></li>
+      <li><a href="#about">О компании</a></li>
+      <li><a href="#contacts">Контакты</a></li>
+    </ul>
+  </div>
+</nav>
 
 <main id="main">
-  <section class="hero" aria-roledescription="карусель" aria-label="Предложения DIGITECH" data-slider>
+  <section class="hero" aria-roledescription="карусель" aria-label="Предложения DIGITECH" data-slider data-slide="1">
+    <div class="hero__bg" aria-hidden="true">
+      <img src="img/hero-photo-1376.webp" srcset="img/hero-photo-900.webp 900w, img/hero-photo-1376.webp 1376w" sizes="100vw" width="1376" height="768" alt="" fetchpriority="high">
+    </div>
     <div class="container hero__viewport">
       <div class="slide" id="slide-1" role="group" aria-roledescription="слайд" aria-label="1 из 3">
         <div class="slide__text">
@@ -77,22 +82,19 @@
           <p class="slide__lead">Камеры Hikvision и Dahua, ИБП MarsRiva, сетевое оборудование и турникеты. Цены в сумах, подбор под объект делает инженер.</p>
           <a class="btn btn--lime" href="#hits">Перейти в каталог<i data-icon="arrow-right"></i></a>
         </div>
-        <div class="slide__pic slide__pic--cut">
-          <img src="img/hero-equipment-1400.webp" srcset="img/hero-equipment-900.webp 900w, img/hero-equipment-1400.webp 1400w" sizes="(min-width: 960px) 760px, 100vw" width="1400" height="930" alt="Камеры видеонаблюдения, регистратор, ИБП и аккумулятор" fetchpriority="high">
-        </div>
       </div>
-      <div class="slide" id="slide-2" role="group" aria-roledescription="слайд" aria-label="2 из 3" data-later>
+      <div class="slide" id="slide-2" role="group" aria-roledescription="слайд" aria-label="2 из 3" hidden>
         <div class="slide__text">
           <p class="eyebrow eyebrow--light">Контроль доступа</p>
           <p class="slide__title">Турникеты и шлагбаумы для проходных</p>
           <p class="slide__lead">Стеклянные турникеты на два прохода, шлагбаумы и болларды. Монтаж и настройку делает наш технический отдел.</p>
           <a class="btn btn--lime" href="#hits" data-tab-link="turn">Смотреть турникеты<i data-icon="arrow-right"></i></a>
         </div>
-        <div class="slide__pic slide__pic--card">
-          <img src="img/slide-turnstiles.webp" width="900" height="395" alt="Стеклянные турникеты на три прохода" loading="lazy">
+        <div class="slide__pic slide__pic--card slide__pic--wide">
+          <img src="img/slide-turnstiles.webp" width="900" height="395" alt="Стеклянные турникеты на два прохода" loading="lazy">
         </div>
       </div>
-      <div class="slide" id="slide-3" role="group" aria-roledescription="слайд" aria-label="3 из 3" data-later>
+      <div class="slide" id="slide-3" role="group" aria-roledescription="слайд" aria-label="3 из 3" hidden>
         <div class="slide__text">
           <p class="eyebrow eyebrow--light">Бесперебойное питание</p>
           <p class="slide__title">ИБП для серверных и видеонаблюдения</p>
@@ -103,12 +105,12 @@
           <img src="img/slide-ups.webp" width="900" height="576" alt="Напольный онлайн-ИБП MarsRiva в серверной" loading="lazy">
         </div>
       </div>
-      <div class="hero__controls" data-slider-controls>
+      <div class="hero__controls">
         <button class="round round--dark" type="button" aria-label="Предыдущий слайд" data-prev><i data-icon="chevron-left"></i></button>
         <div class="dots" role="group" aria-label="Выбор слайда">
           <button type="button" aria-label="Слайд 1" aria-current="true" aria-controls="slide-1"></button>
-          <button type="button" aria-label="Слайд 2" aria-controls="slide-2"></button>
-          <button type="button" aria-label="Слайд 3" aria-controls="slide-3"></button>
+          <button type="button" aria-label="Слайд 2" aria-current="false" aria-controls="slide-2"></button>
+          <button type="button" aria-label="Слайд 3" aria-current="false" aria-controls="slide-3"></button>
         </div>
         <button class="round round--dark" type="button" aria-label="Следующий слайд" data-next><i data-icon="chevron-right"></i></button>
       </div>
@@ -118,35 +120,37 @@
   <section class="cats" aria-label="Разделы каталога">
     <div class="container carousel" data-carousel>
       <button class="round" type="button" aria-label="Прокрутить разделы назад" data-scroll="-1"><i data-icon="chevron-left"></i></button>
-      <div class="carousel__track" tabindex="0" aria-label="Разделы каталога">
+      <div class="carousel__track" role="region" tabindex="0" aria-label="Разделы каталога">
         <a class="cat" href="#hits" data-tab-link="video"><img src="img/p-camera.webp" width="800" height="600" alt="" loading="lazy">Видеонаблюдение</a>
         <a class="cat" href="#hits" data-tab-link="ups"><img src="img/p-ups-tower.webp" width="800" height="600" alt="" loading="lazy">ИБП</a>
-        <a class="cat" href="#hits"><img src="img/p-switch.webp" width="800" height="600" alt="" loading="lazy">Сетевое оборудование</a>
+        <a class="cat" href="#hits" data-tab-link="all"><img src="img/p-switch.webp" width="800" height="600" alt="" loading="lazy">Сетевое оборудование</a>
         <a class="cat" href="#hits" data-tab-link="turn"><img src="img/p-elt811.webp" width="800" height="600" alt="" loading="lazy">Турникеты</a>
-        <a class="cat" href="#hits"><img src="img/p-bollards.webp" width="800" height="600" alt="" loading="lazy">Шлагбаумы и болларды</a>
+        <a class="cat" href="#hits" data-tab-link="all"><img src="img/p-bollards.webp" width="800" height="600" alt="" loading="lazy">Шлагбаумы и болларды</a>
         <a class="cat" href="#hits" data-tab-link="vent"><img src="img/p-recuperator.webp" width="800" height="600" alt="" loading="lazy">Вентиляция</a>
       </div>
       <button class="round" type="button" aria-label="Прокрутить разделы вперёд" data-scroll="1"><i data-icon="chevron-right"></i></button>
     </div>
   </section>
 
-  <section class="about" id="about" aria-labelledby="about-title">
-    <div class="container about__in">
-      <div class="about__text">
-        <p class="eyebrow">Инженерные решения</p>
-        <h2 class="h2" id="about-title">Подберём, привезём и смонтируем</h2>
-        <p class="about__lead">Проектируем видеонаблюдение и контроль доступа, поставляем оборудование со склада в Ташкенте и монтируем его на объекте.</p>
-        <div class="about__actions">
-          <button class="btn btn--blue" type="button" data-open-dialog="dlg-consult" data-topic="Консультация по проекту">Получить консультацию<i data-icon="arrow-right"></i></button>
-          <a class="about__more" href="tel:+998935067237"><span class="round"><i data-icon="phone"></i></span><span>Технический отдел<br>+998 93 506 72 37</span></a>
+  <section class="services" id="services" aria-labelledby="services-title">
+    <div class="container services__in">
+      <div class="services__text">
+        <h2 class="h2" id="services-title">Полный цикл: от подбора до сервиса</h2>
+        <p class="services__lead">Проектируем видеонаблюдение и контроль доступа, поставляем оборудование со склада в Ташкенте, монтируем и обслуживаем.</p>
+        <div class="services__actions">
+          <button class="btn btn--blue" type="button" data-open-dialog="dlg-consult" data-topic="Консультация по проекту">Обсудить проект<i data-icon="arrow-right"></i></button>
+          <a class="services__phone" href="tel:+998935067237"><span class="round"><i data-icon="phone"></i></span><span>Технический отдел<br>+998 93 506 72 37</span></a>
         </div>
-        <ul class="perks">
-          <li><i data-icon="scan-search"></i>Подбор инженером</li>
-          <li><i data-icon="headset"></i>Монтаж и сервис</li>
-          <li><i data-icon="shield-check"></i>Гарантия производителя</li>
+      </div>
+      <div class="services__media">
+        <figure class="services__pic"><img src="img/services-installer-1200.webp" srcset="img/services-installer-800.webp 800w, img/services-installer-1200.webp 1200w" sizes="(min-width: 960px) 760px, 100vw" width="1200" height="670" alt="Монтажник устанавливает купольную камеру на потолке офиса" loading="lazy"></figure>
+        <ul class="services__cards">
+          <li><i data-icon="scan-search"></i>Проектирование и подбор</li>
+          <li><i data-icon="wrench"></i>Монтаж и настройка</li>
+          <li><i data-icon="headset"></i>Сервисное обслуживание</li>
+          <li><i data-icon="shield-check"></i>Контроль доступа и сети</li>
         </ul>
       </div>
-      <figure class="about__pic" style="margin:0"><img src="img/about-store.webp" width="900" height="836" alt="Вывеска DIGITECH на фасаде" loading="lazy"></figure>
     </div>
   </section>
 
@@ -156,7 +160,7 @@
         <div class="promo__text">
           <p class="eyebrow eyebrow--light">Акции и спецпредложения</p>
           <h2 class="promo__title" id="promo-title">Скидки на камеры и телекоммуникационные шкафы</h2>
-          <a class="btn btn--ghost btn--sm" href="#hits">Смотреть акции<i data-icon="arrow-right"></i></a>
+          <a class="btn btn--white" href="#hits">Смотреть акции<i data-icon="arrow-right"></i></a>
         </div>
         <div class="promo__pic">
           <img src="img/promo-domes.webp" width="740" height="350" alt="Купольные камеры видеонаблюдения" loading="lazy">
@@ -169,14 +173,11 @@
   <section class="hits" id="hits" aria-labelledby="hits-title">
     <div class="container">
       <div class="hits__head">
-        <div>
-          <p class="eyebrow">Каталог</p>
-          <h2 class="h2" id="hits-title">В наличии на складе</h2>
-        </div>
-        <a class="link" href="#hits">Все товары<i data-icon="arrow-right"></i></a>
+        <h2 class="h2" id="hits-title">Оборудование в наличии</h2>
+        <a class="link" href="#hits" data-tab-link="all">Весь каталог<i data-icon="arrow-right"></i></a>
       </div>
       <div class="tabs" role="group" aria-label="Фильтр по разделам" data-tabs>
-        <button type="button" aria-pressed="true" data-filter="all">Все товары</button>
+        <button type="button" aria-pressed="true" data-filter="all">Все</button>
         <button type="button" aria-pressed="false" data-filter="video">Видеонаблюдение</button>
         <button type="button" aria-pressed="false" data-filter="ups">ИБП</button>
         <button type="button" aria-pressed="false" data-filter="turn">Турникеты</button>
@@ -188,7 +189,7 @@
           <span class="status status--ok">В наличии</span>
           <h3>IP-камера Hikvision 4 Мп ColorVu <span class="product__model">DS-2CD2047G2-LU</span></h3>
           <p class="product__price">2 774 400 сум</p>
-          <div class="product__foot"><button class="btn btn--blue btn--sm" type="button" data-add="ds2cd2047"><i data-icon="shopping-cart"></i><span>В корзину</span></button></div>
+          <div class="product__foot"><button class="btn btn--tint btn--sm" type="button" data-add="ds2cd2047"><i data-icon="shopping-cart"></i><span>В корзину</span></button></div>
         </li>
         <li class="product" data-cat="ups">
           <img src="img/p-ups-tower.webp" width="800" height="600" alt="Онлайн-ИБП MarsRiva" loading="lazy">
@@ -202,21 +203,21 @@
           <span class="status status--ok">В наличии</span>
           <h3>Турникет стеклянный на два прохода <span class="product__model">ELT-811 TWO-PASS KIT</span></h3>
           <p class="product__price">86 400 000 сум</p>
-          <div class="product__foot"><button class="btn btn--blue btn--sm" type="button" data-add="elt811"><i data-icon="shopping-cart"></i><span>В корзину</span></button></div>
+          <div class="product__foot"><button class="btn btn--tint btn--sm" type="button" data-add="elt811"><i data-icon="shopping-cart"></i><span>В корзину</span></button></div>
         </li>
         <li class="product" data-cat="turn">
           <img src="img/p-mir355.webp" width="800" height="600" alt="Турникет MIR-355" loading="lazy">
           <span class="status status--ok">В наличии</span>
           <h3>Турникет распашной стеклянный <span class="product__model">MIR-355 TWO-PASS KIT</span></h3>
           <p class="product__price">90 000 000 сум</p>
-          <div class="product__foot"><button class="btn btn--blue btn--sm" type="button" data-add="mir355"><i data-icon="shopping-cart"></i><span>В корзину</span></button></div>
+          <div class="product__foot"><button class="btn btn--tint btn--sm" type="button" data-add="mir355"><i data-icon="shopping-cart"></i><span>В корзину</span></button></div>
         </li>
         <li class="product" data-cat="vent">
           <img src="img/p-recuperator.webp" width="800" height="600" alt="Настенный рекуператор HOL-TOP" loading="lazy">
           <span class="status status--ok">В наличии</span>
           <h3>Рекуператор настенный на 150 м³ <span class="product__model">HOL-TOP 1569</span></h3>
           <p class="product__price">18 000 000 сум</p>
-          <div class="product__foot"><button class="btn btn--blue btn--sm" type="button" data-add="hol1569"><i data-icon="shopping-cart"></i><span>В корзину</span></button></div>
+          <div class="product__foot"><button class="btn btn--tint btn--sm" type="button" data-add="hol1569"><i data-icon="shopping-cart"></i><span>В корзину</span></button></div>
         </li>
       </ul>
     </div>
@@ -227,35 +228,36 @@
       <div class="brands__in carousel" data-carousel>
         <p class="brands__label">Бренды<br>в каталоге</p>
         <button class="round" type="button" aria-label="Прокрутить бренды назад" data-scroll="-1"><i data-icon="chevron-left"></i></button>
-        <div class="carousel__track" tabindex="0" aria-label="Бренды">
-          <a class="brand" href="#hits">Hikvision</a>
-          <a class="brand" href="#hits">Dahua</a>
-          <a class="brand" href="#hits">TP-Link</a>
-          <a class="brand" href="#hits">Panasonic</a>
-          <a class="brand" href="#hits">MarsRiva</a>
-          <a class="brand" href="#hits">HOL-TOP</a>
+        <div class="carousel__track" role="region" tabindex="0" aria-label="Бренды">
+          <a class="brand" href="#hits" data-tab-link="all">Hikvision</a>
+          <a class="brand" href="#hits" data-tab-link="all">Dahua</a>
+          <a class="brand" href="#hits" data-tab-link="all">TP-Link</a>
+          <a class="brand" href="#hits" data-tab-link="all">Panasonic</a>
+          <a class="brand" href="#hits" data-tab-link="all">MarsRiva</a>
+          <a class="brand" href="#hits" data-tab-link="all">HOL-TOP</a>
         </div>
         <button class="round" type="button" aria-label="Прокрутить бренды вперёд" data-scroll="1"><i data-icon="chevron-right"></i></button>
       </div>
     </div>
   </section>
 
-  <section class="calcs" aria-label="Калькуляторы">
+  <section class="calcs" aria-labelledby="calcs-title">
+    <h2 class="visually-hidden" id="calcs-title">Калькуляторы</h2>
     <div class="container calcs__in">
       <article class="calc-card">
         <span class="calc-card__icon"><i data-icon="video"></i></span>
         <div class="calc-card__text">
           <h3>Архив записей</h3>
           <p>Сколько дней хранит регистратор при вашем числе камер и дисков.</p>
-          <button class="link" type="button" data-open-dialog="dlg-arc">Открыть калькулятор<i data-icon="arrow-right"></i></button>
+          <button class="link" type="button" data-open-dialog="dlg-arc">Рассчитать<i data-icon="arrow-right"></i></button>
         </div>
         <img src="img/p-nvr.webp" width="800" height="600" alt="" loading="lazy">
       </article>
       <article class="calc-card">
         <span class="calc-card__icon"><i data-icon="zap"></i></span>
         <div class="calc-card__text">
-          <h3>Калькулятор ИБП</h3>
-          <p>Время работы от аккумуляторов при вашей нагрузке.</p>
+          <h3>Время работы ИБП</h3>
+          <p>Сколько система проработает от аккумуляторов при вашей нагрузке.</p>
           <button class="link" type="button" data-open-dialog="dlg-ups">Рассчитать<i data-icon="arrow-right"></i></button>
         </div>
         <img src="img/p-ups-tower.webp" width="800" height="600" alt="" loading="lazy">
@@ -263,11 +265,25 @@
     </div>
   </section>
 
+  <section class="about" id="about" aria-labelledby="about-title">
+    <div class="container about__in">
+      <figure class="about__pic"><img src="img/about-warehouse-1000.webp" srcset="img/about-warehouse-700.webp 700w, img/about-warehouse-1000.webp 1000w" sizes="(min-width: 960px) 620px, 100vw" width="1000" height="558" alt="Проход между стеллажами склада с коробками оборудования" loading="lazy"></figure>
+      <div class="about__text">
+        <h2 class="h2" id="about-title">DIGITECH: 20 лет в системах безопасности</h2>
+        <p class="about__lead">Поставляем видеонаблюдение, ИБП, сетевое оборудование и системы контроля доступа. Отгружаем со своего склада в Ташкенте и отправляем по Узбекистану.</p>
+        <dl class="about__facts">
+          <div><dt>20+ лет</dt><dd>на рынке систем безопасности</dd></div>
+          <div><dt>2 отдела</dt><dd>коммерческий и технический</dd></div>
+          <div><dt>Склад</dt><dd>в Ташкенте, ул. Нукус</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
   <section class="consult" id="consult" aria-labelledby="consult-title">
     <div class="container">
       <div class="consult__in">
         <div class="consult__text">
-          <p class="eyebrow eyebrow--light">Нужна консультация?</p>
           <h2 class="consult__title" id="consult-title">Опишите задачу, и инженер подготовит расчёт</h2>
           <button class="btn btn--lime" type="button" data-open-dialog="dlg-consult" data-topic="Консультация">Получить консультацию<i data-icon="arrow-right"></i></button>
         </div>
@@ -285,7 +301,7 @@
       <ul>
         <li><i data-icon="settings"></i>Подбор оборудования под ваш объект</li>
         <li><i data-icon="shield-check"></i>Официальная гарантия производителя</li>
-        <li><i data-icon="truck"></i>Доставка по всему Узбекистану</li>
+        <li><i data-icon="banknote"></i>Цены в сумах прямо на сайте</li>
         <li><i data-icon="wrench"></i>Свой технический отдел: монтаж и сервис</li>
       </ul>
     </div>
@@ -296,37 +312,38 @@
       <ul>
         <li><i data-icon="truck"></i><div><b>Самовывоз и доставка</b><small>Яндекс Доставка и BTS Express по Узбекистану</small></div></li>
         <li><i data-icon="file-check"></i><div><b>Заявка без оплаты на сайте</b><small>Счёт выставит менеджер после звонка</small></div></li>
-        <li><i data-icon="shield-check"></i><div><b>Безналичный расчёт</b><small>Оплата по счёту после подтверждения заявки</small></div></li>
+        <li><i data-icon="receipt"></i><div><b>Безналичный расчёт</b><small>Оплата по счёту после подтверждения заявки</small></div></li>
       </ul>
     </div>
   </section>
 </main>
 
 <footer class="footer" id="contacts">
+  <h2 class="visually-hidden">Навигация и контакты</h2>
   <div class="container">
     <div class="footer__grid">
       <div>
-        <a class="footer__logo" href="index.html" aria-label="DIGITECH, на главную"><img src="img/logo-on-dark.png" width="528" height="119" alt="DIGITECH" loading="lazy"></a>
+        <a class="footer__logo" href="index.html" aria-label="DIGITECH, на главную"><img src="img/logo-on-dark.webp" width="528" height="119" alt="DIGITECH" loading="lazy"></a>
         <div class="footer__social"><a href="https://t.me/Mao0070" aria-label="Telegram"><i data-icon="telegram"></i></a></div>
       </div>
       <nav aria-label="Каталог">
         <h3>Каталог</h3>
         <ul>
-          <li><a href="#hits">Видеонаблюдение</a></li>
-          <li><a href="#hits">ИБП</a></li>
-          <li><a href="#hits">Сетевое оборудование</a></li>
-          <li><a href="#hits">Турникеты</a></li>
-          <li><a href="#hits">Шлагбаумы и болларды</a></li>
-          <li><a href="#hits">Вентиляция</a></li>
+          <li><a href="#hits" data-tab-link="video">Видеонаблюдение</a></li>
+          <li><a href="#hits" data-tab-link="ups">ИБП</a></li>
+          <li><a href="#hits" data-tab-link="all">Сетевое оборудование</a></li>
+          <li><a href="#hits" data-tab-link="turn">Турникеты</a></li>
+          <li><a href="#hits" data-tab-link="all">Шлагбаумы и болларды</a></li>
+          <li><a href="#hits" data-tab-link="vent">Вентиляция</a></li>
         </ul>
       </nav>
       <nav aria-label="Информация">
         <h3>Информация</h3>
         <ul>
+          <li><a href="#services">Услуги</a></li>
           <li><a href="#about">О компании</a></li>
           <li><a href="#strip">Доставка и оплата</a></li>
           <li><a href="#features">Гарантия</a></li>
-          <li><a href="#consult">Услуги</a></li>
         </ul>
       </nav>
       <div>
@@ -351,13 +368,13 @@
   <form class="dlg" data-endpoint="" novalidate>
     <div class="dlg__head"><h2 id="dlg-consult-title">Заявка на консультацию</h2><button class="round dlg__close" type="button" aria-label="Закрыть" data-close><i data-icon="x"></i></button></div>
     <div class="fields">
-      <label class="field"><span>Имя</span><input name="name" type="text" autocomplete="name" required></label>
-      <label class="field"><span>Телефон</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+998" required></label>
+      <label class="field"><span>Имя</span><input name="name" type="text" autocomplete="name" required aria-describedby="consult-help"></label>
+      <label class="field"><span>Телефон</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+998" required aria-describedby="consult-help"></label>
       <label class="field field--wide"><span>Задача</span><textarea name="task" rows="4" data-topic-field></textarea></label>
     </div>
-    <label class="check"><input name="consent" type="checkbox" required> <span>Согласен на обработку контактных данных</span></label>
+    <label class="check"><input name="consent" type="checkbox" required aria-describedby="consult-help"> <span>Согласен на обработку контактных данных</span></label>
     <button class="btn btn--blue" type="submit">Отправить заявку</button>
-    <p class="form-help" aria-live="polite"></p>
+    <p class="form-help" id="consult-help" aria-live="polite"></p>
   </form>
 </dialog>
 
@@ -369,7 +386,7 @@
       <label class="field"><span>Ёмкость аккумуляторов, А·ч</span><input name="ah" type="number" inputmode="decimal" min="0" value="54"></label>
       <label class="field"><span>Напряжение АКБ, В</span><input name="voltage" type="number" inputmode="numeric" min="1" value="12"></label>
       <label class="field"><span>КПД инвертора</span><select name="eff"><option value="0.6">0,6</option><option value="0.7">0,7</option><option value="0.8">0,8</option><option value="0.9">0,9</option><option value="0.95" selected>0,95</option><option value="1">1</option></select></label>
-      <label class="field"><span>Глубина разряда, %</span><input name="depth" type="number" inputmode="numeric" min="0" max="90" value="5"><small>Остаток заряда, при котором защита ИБП отключает аккумулятор</small></label>
+      <label class="field"><span>Остаток заряда при отключении, %</span><input name="depth" type="number" inputmode="numeric" min="0" max="90" value="5"><small>При этом остатке защита ИБП отключает аккумулятор</small></label>
       <label class="field"><span>Износ АКБ, %</span><input name="wear" type="number" inputmode="numeric" min="0" max="90" value="5"><small>0 для нового аккумулятора</small></label>
     </form>
     <div class="result"><span>Ориентировочное время работы</span><output data-out="ups">≈ 35 мин</output><small>Расчёт не заменяет замер нагрузки на объекте.</small></div>
@@ -393,6 +410,8 @@
   </div>
 </dialog>
 
-<script src="js/site.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="js/site.js?v=3" defer></script>
 </body>
 </html>
