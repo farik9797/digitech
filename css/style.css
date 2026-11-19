@@ -540,3 +540,82 @@ dialog::backdrop { background: rgba(7, 16, 41, 0.6); }
   .active-filters { order: 3; flex-basis: 100%; }
 }
 @media (max-width: 380px) { .product--full { grid-template-columns: 88px minmax(0, 1fr); } }
+
+/* ---------- страница товара ---------- */
+.product-page { padding-top: 20px; }
+.product-page [hidden] { display: none !important; }
+.pp { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 48px; align-items: start; margin-top: 20px; }
+.pp__gallery { position: sticky; top: calc(var(--header-h, 73px) + 16px); display: grid; gap: 12px; }
+.pp__main { position: relative; overflow: hidden; margin: 0; padding: 32px; border: 1px solid var(--line); border-radius: var(--r-banner); background: var(--white); }
+.pp__main img { width: 100%; aspect-ratio: 4 / 3; object-fit: contain; }
+.pp__main .product__noimg { margin: 0; aspect-ratio: 4 / 3; font-size: 15px; }
+.pp__main .product__noimg .icon { width: 40px; height: 40px; }
+.pp__thumbs { display: flex; flex-wrap: wrap; gap: 10px; }
+.pp__thumbs button { width: 84px; padding: 6px; border: 1px solid var(--line); border-radius: var(--r-control); background: var(--white); cursor: pointer; transition: border-color 0.2s var(--ease); }
+.pp__thumbs button:hover { border-color: var(--blue-100); }
+.pp__thumbs button[aria-current="true"] { border-color: var(--blue); }
+.pp__thumbs img { width: 100%; aspect-ratio: 4 / 3; object-fit: contain; }
+.pp__info { display: grid; gap: 16px; justify-items: start; min-width: 0; }
+.pp__brandline { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; font-size: 14px; color: var(--muted); }
+.pp__brand { padding: 4px 10px; border-radius: 999px; background: var(--blue-50); color: var(--blue); font-weight: 700; }
+.pp__model b { color: var(--ink); font-weight: 600; }
+.pp__title { min-width: 0; font-size: clamp(28px, 1.4vw + 16px, 38px); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; text-wrap: balance; overflow-wrap: break-word; }
+.pp__specs li { font-size: 13px; padding: 4px 10px; }
+.pp__buy { display: grid; gap: 12px; justify-self: stretch; margin-top: 4px; padding: 24px; border: 1px solid var(--line); border-radius: var(--r-card); background: var(--bg); }
+.pp__price { font-size: clamp(28px, 1.2vw + 18px, 36px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; }
+.pp__price--ask { font-size: 24px; color: var(--ink-2); }
+.pp__note { font-size: 14px; color: var(--muted); }
+.pp__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 4px; }
+.pp__cart, .pp__ask { flex: 1 1 200px; }
+.pp__consult { width: 100%; }
+.pp .btn[data-add][aria-pressed="true"] { background: var(--ok); border-color: var(--ok); color: var(--white); }
+.qty { display: inline-flex; align-items: center; border: 1px solid var(--line-2); border-radius: var(--r-control); background: var(--white); }
+.qty__btn { display: grid; place-items: center; width: 44px; height: 46px; border: 0; background: none; color: var(--ink); cursor: pointer; border-radius: var(--r-control); transition: color 0.2s var(--ease); }
+.qty__btn:hover { color: var(--blue); }
+.qty__btn:disabled { color: var(--line-2); cursor: default; }
+.qty__btn .icon { width: 18px; height: 18px; }
+.qty input { width: 52px; height: 46px; border: 0; background: none; font: inherit; font-size: 16px; font-weight: 700; text-align: center; color: var(--ink); -moz-appearance: textfield; }
+.qty input::-webkit-outer-spin-button, .qty input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.pp__service { display: grid; gap: 14px; justify-self: stretch; padding-top: 8px; list-style: none; }
+.pp__service li { display: flex; gap: 14px; align-items: flex-start; font-size: 14px; line-height: 1.45; }
+.pp__service .icon { flex: none; width: 24px; height: 24px; color: var(--blue); }
+.pp__service b { display: block; font-size: 15px; }
+.pp__service span { color: var(--muted); }
+.pp__service a { color: var(--ink); font-weight: 600; text-decoration: none; }
+.pp__service a:hover { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+
+.pp-specs { padding-top: var(--section); }
+.pp-specs .h2 { margin-bottom: 20px; }
+.pp-specs__grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 40px; align-items: start; }
+.spec-table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.spec-table th, .spec-table td { padding: 12px 16px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+.spec-table th { width: 42%; font-weight: 400; color: var(--muted); }
+.spec-table td { font-weight: 600; color: var(--ink); overflow-wrap: anywhere; }
+.spec-table tr:nth-child(odd) { background: var(--bg); }
+.spec-empty { display: grid; gap: 14px; justify-items: start; padding: 24px; border: 1px dashed var(--line-2); border-radius: var(--r-card); color: var(--ink-2); }
+.pp-specs__text { max-width: 60ch; font-size: 16px; line-height: 1.65; color: var(--ink-2); }
+.pp-missing { margin-top: 32px; }
+.pp-missing h1 { font-size: 24px; font-weight: 700; }
+.pp-related { padding-block: var(--section); }
+.products--related { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.product { position: relative; transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease); }
+.product__link { color: inherit; text-decoration: none; }
+.product__link::after { content: ""; position: absolute; inset: 0; z-index: 1; border-radius: inherit; }
+.product__link:hover { color: var(--blue); }
+.product:has(.product__link:hover) { border-color: var(--blue-100); box-shadow: var(--shadow); }
+.product__foot { position: relative; z-index: 2; }
+
+@media (max-width: 1100px) { .products--related { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 960px) {
+  .pp { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .pp__gallery { position: static; }
+  .pp__main { padding: 20px; }
+  .pp-specs__grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+}
+@media (max-width: 560px) {
+  .products--related { grid-template-columns: minmax(0, 1fr); }
+  .pp__buy { padding: 18px; }
+  .qty { width: 100%; justify-content: space-between; }
+  .pp__cart, .pp__ask { flex-basis: 100%; }
+  .spec-table th, .spec-table td { padding: 10px 12px; font-size: 14px; }
+}
