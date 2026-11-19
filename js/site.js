@@ -260,6 +260,15 @@
         if (imgs[1]) gsap.fromTo(imgs[1], { rotateY: -14, x: 16 }, { rotateY: 0, x: 0, transformPerspective: 900, ease: 'none', scrollTrigger: { trigger: '.calcs', start: 'top 90%', end: 'top 55%', scrub: 0.5 } });
       }
 
+      // 6б. Страница услуг: карточки услуг «ложатся на стол», как товары. Без opacity: видны и до триггера
+      if ($('.svc-card')) {
+        gsap.from('.svc-card', {
+          rotateX: desktop ? 14 : 0, y: desktop ? 40 : 24, z: desktop ? -40 : 0, transformPerspective: 1200,
+          duration: 0.7, ease: 'power3.out', stagger: desktop ? 0.06 : 0.04,
+          scrollTrigger: { trigger: '.svc-grid', start: 'top 85%', once: true },
+        });
+      }
+
       // 7. Блики: полоса света проходит по карточкам, фото и баннерам в такт прокрутке.
       // В ряду карточек блик идёт слева направо с небольшим сдвигом между ними.
       const glareOf = (el) => {
@@ -278,6 +287,7 @@
       sweep($$('.calc-card'), $('.calcs'));
       sweep($$('.about__pic'), $('.about__pic'));
       sweep($$('.consult__in'), $('.consult__in'));
+      sweep($$('.svc-hero__pic'), $('.svc-hero'));
     });
   };
   if (document.readyState === 'complete') start3d(); else window.addEventListener('load', start3d);

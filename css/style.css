@@ -176,7 +176,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 @keyframes dot-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
 /* ---------- блики при прокрутке (полосу двигает GSAP в site.js) ---------- */
-.cat, .services__pic, .about__pic, .consult__in, .calc-card { position: relative; overflow: hidden; }
+.cat, .services__pic, .about__pic, .consult__in, .calc-card, .svc-hero__pic { position: relative; overflow: hidden; }
 .glare { position: absolute; top: -25%; bottom: -25%; left: 0; z-index: 2; width: 30%; pointer-events: none; background: linear-gradient(90deg, transparent 8%, var(--glare-halo) 34%, var(--glare) 50%, var(--glare-halo) 66%, transparent 92%); transform: skewX(-16deg); }
 .promo__in .glare, .consult__in .glare { --glare: var(--glare-dark); --glare-halo: var(--glare-dark-halo); }
 .cat .glare, .calc-card .glare { --glare: var(--glare-card); --glare-halo: var(--glare-card-halo); mix-blend-mode: overlay; }
@@ -625,7 +625,7 @@ dialog::backdrop { background: rgba(7, 16, 41, 0.6); }
 .shop-page [hidden], .drawer [hidden] { display: none !important; }
 .field > label:not(.visually-hidden), .seg > legend { font-size: 13px; font-weight: 600; color: var(--ink-2); }
 .field abbr { color: var(--blue); text-decoration: none; }
-.field__error { min-height: 0; font-size: 13px; font-weight: 600; color: #b42318; }
+.field .field__error, .field__error { min-height: 0; font-size: 13px; font-weight: 600; color: #b42318; }
 .field__error:empty { display: none; }
 
 dialog.drawer { width: min(440px, 100%); max-width: 100%; height: 100dvh; max-height: 100dvh; margin: 0 0 0 auto; border-radius: 0; }
@@ -746,4 +746,77 @@ button.link { border: 0; background: none; padding: 0; font: inherit; font-weigh
   .drawer__head, .drawer__foot { padding-inline: var(--pad); }
   .drawer .cart-list { padding-inline: var(--pad); }
   .done { padding: 32px 20px; }
+}
+
+/* ---------- страница услуг ---------- */
+.svc-page { padding-top: 20px; }
+/* форма и экран «Заявка принята» переключаются атрибутом hidden: он сильнее display: grid */
+.svc-page [hidden] { display: none !important; }
+.svc-hero { --focus: var(--lime); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); margin-top: 14px; border-radius: var(--r-banner); background: var(--banner-bg); color: var(--white); overflow: hidden; }
+.svc-hero__text { display: grid; align-content: center; justify-items: start; gap: 20px; padding: 56px 48px; }
+.svc-hero__title { min-width: 0; font-size: clamp(34px, 2.6vw + 14px, 56px); font-weight: 700; line-height: 1.05; letter-spacing: -0.025em; text-wrap: balance; overflow-wrap: break-word; }
+.svc-hero__lead { max-width: 44ch; font-size: 18px; color: var(--on-dark-2); }
+.svc-hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; margin-top: 8px; }
+.svc-phone { display: inline-flex; align-items: center; gap: 12px; font-size: 14px; line-height: 1.35; color: var(--on-dark-2); text-decoration: none; }
+.svc-phone b { font-size: 17px; color: var(--white); white-space: nowrap; }
+.svc-phone:hover .round--dark { background: var(--white); border-color: var(--white); color: var(--navy-900); }
+.svc-hero__pic { position: relative; margin: 0; overflow: hidden; }
+.svc-hero__pic img { width: 100%; height: 100%; min-height: 400px; object-fit: cover; object-position: 60% 30%; }
+
+.svc-list { padding-block: var(--section); }
+.svc-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: end; gap: 12px 56px; margin-bottom: 32px; }
+.svc-head p { max-width: 52ch; font-size: 17px; color: var(--ink-2); }
+.svc-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.svc-card { display: flex; flex-direction: column; gap: 12px; min-width: 0; padding: 28px; border: 1px solid var(--line); border-radius: var(--r-card); background: var(--white); }
+.svc-card__icon { display: grid; place-items: center; width: 52px; height: 52px; margin-bottom: 8px; border-radius: 14px; background: var(--blue-50); color: var(--blue); }
+.svc-card__icon .icon { width: 26px; height: 26px; stroke-width: 1.75; }
+.svc-card h3 { font-size: 20px; font-weight: 700; line-height: 1.25; letter-spacing: -0.01em; text-wrap: balance; overflow-wrap: break-word; }
+.svc-card p { color: var(--ink-2); }
+.svc-card__foot { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; margin-top: auto; padding-top: 12px; }
+.svc-card__cat { display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; font-weight: 600; color: var(--ink-2); text-decoration: underline; text-decoration-color: var(--line-2); text-underline-offset: 4px; transition: color 0.2s var(--ease), text-decoration-color 0.2s var(--ease); }
+.svc-card__cat:hover { color: var(--blue); text-decoration-color: currentColor; }
+
+.svc-steps { padding-block: var(--section); background: var(--bg); }
+.svc-steps .h2 { margin-bottom: 32px; }
+.steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.steps li { position: relative; display: grid; align-content: start; gap: 10px; padding: 28px; border: 1px solid var(--line); border-radius: var(--r-card); background: var(--white); }
+/* линия от номера шага к следующей карточке */
+.steps li:not(:last-child)::after { content: ""; position: absolute; top: 49px; left: 84px; right: -21px; height: 2px; background: var(--blue-100); }
+.steps__n { display: grid; place-items: center; width: 44px; height: 44px; margin-bottom: 6px; border-radius: 50%; background: var(--blue); color: var(--white); font-size: 18px; font-weight: 700; }
+.steps h3 { font-size: 20px; font-weight: 700; line-height: 1.25; letter-spacing: -0.01em; }
+.steps p { color: var(--ink-2); }
+
+.svc-request { padding-block: var(--section); }
+.svc-request__in { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); align-items: start; gap: 56px; }
+.svc-request__text { position: sticky; top: calc(var(--header-h) + 24px); display: grid; justify-items: start; gap: 18px; }
+.svc-request__text > p { max-width: 44ch; font-size: 17px; color: var(--ink-2); }
+.svc-contacts { width: 100%; margin: 8px 0 0; border-top: 1px solid var(--line); }
+.svc-contacts div { display: grid; gap: 2px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.svc-contacts dt { font-size: 13px; color: var(--muted); }
+.svc-contacts dd { margin: 0; font-size: 17px; font-weight: 600; }
+.svc-contacts a { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; text-decoration: none; white-space: nowrap; }
+.svc-contacts a:hover { color: var(--blue); text-decoration: underline; text-underline-offset: 4px; }
+.svc-form-card { padding: 32px; border: 1px solid var(--line); border-radius: var(--r-banner); background: var(--white); box-shadow: var(--shadow); }
+.svc-form { display: grid; gap: 18px; }
+.svc-done { display: grid; justify-items: center; gap: 14px; padding: 24px 8px; text-align: center; }
+.svc-done h3 { font-size: clamp(22px, 1vw + 16px, 28px); font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; outline: 0; overflow-wrap: anywhere; }
+.svc-done p { max-width: 46ch; color: var(--ink-2); }
+
+@media (max-width: 1100px) { .svc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 960px) {
+  .svc-hero { grid-template-columns: minmax(0, 1fr); }
+  .svc-hero__text { padding: 36px 28px; }
+  .svc-hero__pic img { min-height: 0; aspect-ratio: 16 / 8; }
+  .svc-head, .svc-request__in { grid-template-columns: minmax(0, 1fr); }
+  .svc-request__in { gap: 32px; }
+  .svc-request__text { position: static; }
+  .steps { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .steps li:not(:last-child)::after { display: none; }
+}
+@media (max-width: 760px) { .svc-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; } }
+@media (max-width: 560px) {
+  .svc-hero__text { padding: 28px 20px; }
+  .svc-hero__actions .btn { width: 100%; }
+  .svc-card, .steps li { padding: 22px; }
+  .svc-form-card { padding: 20px; }
 }
