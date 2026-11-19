@@ -1,4 +1,4 @@
-// DIGITECH, макет главной: шапка, слайдер, каталог, меню, карусели, фильтр, корзина, окна, калькуляторы, 3D при скролле.
+// DIGITECH, макет главной: шапка, слайдер с видео, каталог, меню, карусели, фильтр, корзина, окна, калькуляторы, 3D и блики при скролле.
 (() => {
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -31,6 +31,25 @@
       if (e.key === 'ArrowLeft') show(current - 1);
       if (e.key === 'ArrowRight') show(current + 1);
     });
+
+    // ---- Видео на фоне слайдов: грузится и играет только у активного слайда и только пока hero на экране.
+    // При «уменьшить движение» и режиме экономии трафика остаётся фото.
+    const vids = $$('.hero__media video[data-src]', slider);
+    const saveData = navigator.connection && navigator.connection.saveData;
+    if (vids.length && !reduce.matches && !saveData) {
+      let onScreen = true;
+      const sync = () => vids.forEach((v) => {
+        const active = v.closest('[data-media]').dataset.media === slider.dataset.slide;
+        if (active && onScreen) {
+          if (!v.getAttribute('src')) v.src = v.dataset.src;
+          const p = v.play(); if (p) p.catch(() => {});
+        } else v.pause();
+      });
+      vids.forEach((v) => v.addEventListener('playing', () => v.classList.add('is-playing'), { once: true }));
+      new MutationObserver(sync).observe(slider, { attributes: true, attributeFilter: ['data-slide'] });
+      if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => { onScreen = e.isIntersecting; sync(); }).observe(slider);
+      sync();
+    }
   }
 
   // ---- Каталог в шапке: клик, клик мимо, Esc, уход фокуса
@@ -194,7 +213,7 @@
 
       // 1. Первый экран «уходит вглубь»: фото наклоняется и отдаляется, текст обгоняет его
       gsap.timeline({ scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.6 } })
-        .to('.hero__bg img', desktop ? { rotateX: 8, z: -80, scale: 1.06, yPercent: 8, transformPerspective: 1400, ease: 'none' } : { scale: 1.08, yPercent: 6, ease: 'none' }, 0)
+        .to('.hero__media', desktop ? { rotateX: 8, z: -80, scale: 1.06, yPercent: 8, transformPerspective: 1400, ease: 'none' } : { scale: 1.08, yPercent: 6, ease: 'none' }, 0)
         .to('.hero .slide__text', { y: desktop ? -40 : -24, opacity: 0.4, ease: 'none' }, 0);
 
       // 2. Фото монтажника «встаёт» из наклона, как в Container Scroll (21st.dev)
@@ -238,6 +257,25 @@
         if (imgs[0]) gsap.fromTo(imgs[0], { rotateX: 22, y: 20 }, { rotateX: 0, y: 0, transformPerspective: 900, ease: 'none', scrollTrigger: { trigger: '.calcs', start: 'top 90%', end: 'top 55%', scrub: 0.5 } });
         if (imgs[1]) gsap.fromTo(imgs[1], { rotateY: -14, x: 16 }, { rotateY: 0, x: 0, transformPerspective: 900, ease: 'none', scrollTrigger: { trigger: '.calcs', start: 'top 90%', end: 'top 55%', scrub: 0.5 } });
       }
+
+      // 7. Блики: полоса света проходит по карточкам, фото и баннерам в такт прокрутке.
+      // В ряду карточек блик идёт слева направо с небольшим сдвигом между ними.
+      const glareOf = (el) => {
+        let g = el.querySelector(':scope > .glare');
+        if (!g) { g = document.createElement('span'); g.className = 'glare'; g.setAttribute('aria-hidden', 'true'); el.appendChild(g); }
+        return g;
+      };
+      const sweep = (els, trigger) => {
+        if (!els.length || !trigger) return;
+        const tl = gsap.timeline({ scrollTrigger: { trigger, start: 'top bottom', end: 'bottom top', scrub: 0.5 } });
+        els.forEach((el, i) => tl.fromTo(glareOf(el), { x: 0, xPercent: -200, skewX: -16 }, { x: 0, xPercent: 380, skewX: -16, ease: 'none', duration: 1 }, i * 0.12));
+      };
+      sweep($$('.cat'), $('.cats'));
+      sweep($$('.services__pic'), $('.services__pic'));
+      sweep($$('.promo__in'), $('.promo__in'));
+      sweep($$('.calc-card'), $('.calcs'));
+      sweep($$('.about__pic'), $('.about__pic'));
+      sweep($$('.consult__in'), $('.consult__in'));
     });
   };
   if (document.readyState === 'complete') start3d(); else window.addEventListener('load', start3d);

@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=3">
+<link rel="stylesheet" href="css/style.css?v=8">
 </head>
 <body>
 <a class="skip" href="#main">К содержанию</a>
@@ -72,7 +72,18 @@
 <main id="main">
   <section class="hero" aria-roledescription="карусель" aria-label="Предложения DIGITECH" data-slider data-slide="1">
     <div class="hero__bg" aria-hidden="true">
-      <img src="img/hero-photo-1376.webp" srcset="img/hero-photo-900.webp 900w, img/hero-photo-1376.webp 1376w" sizes="100vw" width="1376" height="768" alt="" fetchpriority="high">
+      <div class="hero__media" data-media="1">
+        <img src="img/hero-photo-1376.webp" srcset="img/hero-photo-900.webp 900w, img/hero-photo-1376.webp 1376w" sizes="100vw" width="1376" height="768" alt="" fetchpriority="high">
+        <video muted loop playsinline preload="none" disablepictureinpicture tabindex="-1" data-src="video/hero-1.mp4"></video>
+      </div>
+      <div class="hero__media" data-media="2">
+        <img src="img/hero-turnstiles-1376.webp" srcset="img/hero-turnstiles-900.webp 900w, img/hero-turnstiles-1376.webp 1376w" sizes="100vw" width="1376" height="768" alt="" loading="lazy">
+        <video muted loop playsinline preload="none" disablepictureinpicture tabindex="-1" data-src="video/hero-2.mp4"></video>
+      </div>
+      <div class="hero__media" data-media="3">
+        <img src="img/hero-ups-1376.webp" srcset="img/hero-ups-900.webp 900w, img/hero-ups-1376.webp 1376w" sizes="100vw" width="1376" height="768" alt="" loading="lazy">
+        <video muted loop playsinline preload="none" disablepictureinpicture tabindex="-1" data-src="video/hero-3.mp4"></video>
+      </div>
     </div>
     <div class="container hero__viewport">
       <div class="slide" id="slide-1" role="group" aria-roledescription="слайд" aria-label="1 из 3">
@@ -90,9 +101,6 @@
           <p class="slide__lead">Стеклянные турникеты на два прохода, шлагбаумы и болларды. Монтаж и настройку делает наш технический отдел.</p>
           <a class="btn btn--lime" href="#hits" data-tab-link="turn">Смотреть турникеты<i data-icon="arrow-right"></i></a>
         </div>
-        <div class="slide__pic slide__pic--card slide__pic--wide">
-          <img src="img/slide-turnstiles.webp" width="900" height="395" alt="Стеклянные турникеты на два прохода" loading="lazy">
-        </div>
       </div>
       <div class="slide" id="slide-3" role="group" aria-roledescription="слайд" aria-label="3 из 3" hidden>
         <div class="slide__text">
@@ -100,9 +108,6 @@
           <p class="slide__title">ИБП для серверных и видеонаблюдения</p>
           <p class="slide__lead">Посчитаем, сколько система проработает от аккумуляторов, и подберём ИБП под вашу нагрузку.</p>
           <button class="btn btn--lime" type="button" data-open-dialog="dlg-ups">Рассчитать время работы<i data-icon="arrow-right"></i></button>
-        </div>
-        <div class="slide__pic slide__pic--card">
-          <img src="img/slide-ups.webp" width="900" height="576" alt="Напольный онлайн-ИБП MarsRiva в серверной" loading="lazy">
         </div>
       </div>
       <div class="hero__controls">
@@ -412,6 +417,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-<script src="js/site.js?v=3" defer></script>
+<script src="js/site.js?v=5" defer></script>
 </body>
 </html>

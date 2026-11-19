@@ -22,6 +22,12 @@
   --on-dark: #eef3ff;
   --on-dark-2: #b9c6e4;
   --focus: #0757dc;
+  --glare: rgba(255, 255, 255, 0.62);
+  --glare-halo: rgba(255, 255, 255, 0.16);
+  --glare-dark: rgba(214, 228, 255, 0.34);
+  --glare-dark-halo: rgba(214, 228, 255, 0.08);
+  --glare-card: rgba(255, 255, 255, 0.95);
+  --glare-card-halo: rgba(255, 255, 255, 0.3);
   --banner-bg: radial-gradient(120% 140% at 85% 30%, var(--navy-700) 0%, var(--navy-800) 50%, var(--navy-950) 100%);
 
   --font: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -132,9 +138,16 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 /* ---------- hero slider ---------- */
 .hero { position: relative; overflow: hidden; color: var(--white); background: var(--navy-950); isolation: isolate; }
 .hero__bg { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
-.hero__bg img { width: 100%; height: 100%; object-fit: cover; object-position: 70% 60%; transform-origin: 50% 40%; }
+.hero__media { position: absolute; inset: 0; opacity: 0; transform-origin: 50% 40%; transition: opacity 0.7s var(--ease); }
+.hero[data-slide="1"] [data-media="1"], .hero[data-slide="2"] [data-media="2"], .hero[data-slide="3"] [data-media="3"] { opacity: 1; }
+.hero__media img, .hero__media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 70% 60%; }
+.hero__media video { opacity: 0; transition: opacity 0.8s var(--ease); }
+.hero__media video.is-playing { opacity: 1; }
+@media (prefers-reduced-motion: no-preference) {
+  .hero__media:not(:has(video)) img { animation: hero-drift 18s ease-in-out infinite alternate; }
+}
+@keyframes hero-drift { from { transform: scale(1); } to { transform: scale(1.06) translateX(-1.5%); } }
 .hero__bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(7, 16, 41, 0.92) 0%, rgba(7, 16, 41, 0.72) 38%, rgba(7, 16, 41, 0.12) 70%, rgba(7, 16, 41, 0.05) 100%); transition: background-color 0.45s var(--ease); }
-.hero:not([data-slide="1"]) .hero__bg::after { background-color: rgba(7, 16, 41, 0.55); }
 .hero__viewport { position: relative; display: grid; }
 .slide { grid-area: 1 / 1; display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); align-items: center; gap: 40px; min-height: 560px; padding-block: 56px 120px; transition: opacity 0.45s var(--ease), visibility 0.45s; }
 .slide[hidden] { display: grid; visibility: hidden; opacity: 0; }
@@ -143,14 +156,18 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .slide__lead { font-size: 18px; color: var(--on-dark-2); max-width: 44ch; }
 .slide__pic { position: relative; justify-self: end; width: 100%; perspective: 1400px; }
 .slide__pic--cut img { width: 100%; max-width: 700px; margin-left: auto; filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.35)); transform-origin: 50% 100%; }
-.slide__pic--card img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: var(--r-banner); border: 1px solid rgba(255, 255, 255, 0.14); box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35); }
-.slide__pic--wide img { aspect-ratio: 900 / 395; }
 .hero__controls { position: absolute; left: var(--pad); bottom: 40px; z-index: 2; display: flex; align-items: center; gap: 8px; }
 .dots { display: flex; }
 .dots button { position: relative; width: 28px; height: 44px; padding: 0; border: 0; background: none; cursor: pointer; transition: width 0.25s var(--ease); }
 .dots button::before { content: ""; position: absolute; left: 9px; top: 18px; width: 10px; height: 8px; border-radius: 999px; background: rgba(255, 255, 255, 0.4); transition: width 0.25s var(--ease), background-color 0.25s var(--ease); }
 .dots button[aria-current="true"] { width: 46px; }
 .dots button[aria-current="true"]::before { width: 28px; background: var(--white); }
+
+/* ---------- блики при прокрутке (полосу двигает GSAP в site.js) ---------- */
+.cat, .services__pic, .about__pic, .consult__in, .calc-card { position: relative; overflow: hidden; }
+.glare { position: absolute; top: -25%; bottom: -25%; left: 0; z-index: 2; width: 30%; pointer-events: none; background: linear-gradient(90deg, transparent 8%, var(--glare-halo) 34%, var(--glare) 50%, var(--glare-halo) 66%, transparent 92%); transform: skewX(-16deg); }
+.promo__in .glare, .consult__in .glare { --glare: var(--glare-dark); --glare-halo: var(--glare-dark-halo); }
+.cat .glare, .calc-card .glare { --glare: var(--glare-card); --glare-halo: var(--glare-card-halo); mix-blend-mode: overlay; }
 
 /* ---------- categories carousel ---------- */
 .cats { background: var(--bg); padding-block: 40px; }
