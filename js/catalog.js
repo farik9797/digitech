@@ -240,4 +240,11 @@
   mobile.addEventListener('change', () => { if (!mobile.matches) closeFilters(); });
 
   render();
+
+  // На телефоне плитки разделов листаются: выбранный раздел сразу виден, а не за краем экрана
+  const tile = $('.cat-tile[aria-current]');
+  const track = tile && tile.parentElement;
+  if (track && track.scrollWidth > track.clientWidth) {
+    track.scrollLeft += tile.getBoundingClientRect().left - track.getBoundingClientRect().left - (track.clientWidth - tile.offsetWidth) / 2;
+  }
 })();

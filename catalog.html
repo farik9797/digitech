@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=20">
+<link rel="stylesheet" href="css/style.css?v=21">
 <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -81,17 +81,20 @@
 
     <div class="cat-head">
       <h1 class="cat-head__title" data-cat-title>Каталог оборудования</h1>
-      <p class="cat-head__count" data-count aria-live="polite">8 товаров</p>
     </div>
 
-    <nav class="cat-chips" aria-label="Разделы каталога">
-      <a href="catalog.html" data-cat-link="" aria-current="page">Все<span>8</span></a>
-      <a href="catalog.html?cat=video" data-cat-link="video">Видеонаблюдение<span>1</span></a>
-      <a href="catalog.html?cat=ups" data-cat-link="ups">ИБП<span>1</span></a>
-      <a href="catalog.html?cat=net" data-cat-link="net">Сетевое оборудование<span>1</span></a>
-      <a href="catalog.html?cat=turn" data-cat-link="turn">Турникеты<span>3</span></a>
-      <a href="catalog.html?cat=barrier" data-cat-link="barrier">Шлагбаумы и болларды<span>0</span></a>
-      <a href="catalog.html?cat=vent" data-cat-link="vent">Вентиляция<span>2</span></a>
+    <nav class="carousel cat-tiles" aria-label="Разделы каталога" data-carousel>
+      <button class="round" type="button" aria-label="Прокрутить разделы назад" data-scroll="-1"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m15 18-6-6 6-6" /></svg></button>
+      <div class="carousel__track" role="region" tabindex="0" aria-label="Разделы каталога">
+        <a class="cat-tile" href="catalog.html" data-cat-link="" aria-current="page"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="7" height="7" x="3" y="3" rx="1" /> <rect width="7" height="7" x="14" y="3" rx="1" /> <rect width="7" height="7" x="14" y="14" rx="1" /> <rect width="7" height="7" x="3" y="14" rx="1" /></svg><b>Все товары</b><span>8</span></a>
+        <a class="cat-tile" href="catalog.html?cat=video" data-cat-link="video"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16.75 12h3.632a1 1 0 0 1 .894 1.447l-2.034 4.069a1 1 0 0 1-1.708.134l-2.124-2.97" /> <path d="M17.106 9.053a1 1 0 0 1 .447 1.341l-3.106 6.211a1 1 0 0 1-1.342.447L3.61 12.3a2.92 2.92 0 0 1-1.3-3.91L3.69 5.6a2.92 2.92 0 0 1 3.92-1.3z" /> <path d="M2 19h3.76a2 2 0 0 0 1.8-1.1L9 15" /> <path d="M2 21v-4" /> <path d="M7 9h.01" /></svg><b>Видеонаблюдение</b><span>1</span></a>
+        <a class="cat-tile" href="catalog.html?cat=ups" data-cat-link="ups"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m11 7-3 5h4l-3 5" /> <path d="M14.856 6H16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.935" /> <path d="M22 14v-4" /> <path d="M5.14 18H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h2.936" /></svg><b>ИБП</b><span>1</span></a>
+        <a class="cat-tile" href="catalog.html?cat=net" data-cat-link="net"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="16" y="16" width="6" height="6" rx="1" /> <rect x="2" y="16" width="6" height="6" rx="1" /> <rect x="9" y="2" width="6" height="6" rx="1" /> <path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3" /> <path d="M12 12V8" /></svg><b>Сетевое оборудование</b><span>1</span></a>
+        <a class="cat-tile" href="catalog.html?cat=turn" data-cat-link="turn"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M13 19a4 4 0 00-8 0" /> <path d="M16 10h2" /> <path d="M16 14h2" /> <circle cx="9" cy="12" r="3" /> <rect x="2" y="5" width="20" height="14" rx="2" /></svg><b>Турникеты</b><span>3</span></a>
+        <a class="cat-tile" href="catalog.html?cat=barrier" data-cat-link="barrier"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m21 8-2 2-1.5-3.7A2 2 0 0 0 15.646 5H8.4a2 2 0 0 0-1.903 1.257L5 10 3 8" /> <path d="M7 14h.01" /> <path d="M17 14h.01" /> <rect width="18" height="8" x="3" y="10" rx="2" /> <path d="M5 18v2" /> <path d="M19 18v2" /></svg><b>Шлагбаумы и болларды</b><span>0</span></a>
+        <a class="cat-tile" href="catalog.html?cat=vent" data-cat-link="vent"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10.827 16.379a6.082 6.082 0 0 1-8.618-7.002l5.412 1.45a6.082 6.082 0 0 1 7.002-8.618l-1.45 5.412a6.082 6.082 0 0 1 8.618 7.002l-5.412-1.45a6.082 6.082 0 0 1-7.002 8.618l1.45-5.412Z" /> <path d="M12 12v.01" /></svg><b>Вентиляция</b><span>2</span></a>
+      </div>
+      <button class="round" type="button" aria-label="Прокрутить разделы вперёд" data-scroll="1"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 18 6-6-6-6" /></svg></button>
     </nav>
 
     <div class="cat-layout">
@@ -125,8 +128,8 @@
       <div class="filters-backdrop" data-filters-close hidden></div>
 
       <section class="results" aria-labelledby="results-title">
-        <h2 class="visually-hidden" id="results-title">Товары</h2>
         <div class="toolbar">
+          <h2 class="toolbar__title" id="results-title"><span data-count aria-live="polite">8 товаров</span></h2>
           <button class="btn btn--line btn--sm toolbar__filters" type="button" aria-controls="filters" aria-expanded="false" data-filters-open><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10 5H3" /> <path d="M12 19H3" /> <path d="M14 3v4" /> <path d="M16 17v4" /> <path d="M21 12h-9" /> <path d="M21 19h-5" /> <path d="M21 5h-7" /> <path d="M8 10v4" /> <path d="M8 12H3" /></svg>Фильтры<span class="badge" data-filter-count hidden>0</span></button>
           <ul class="active-filters" aria-label="Выбранные фильтры" data-active></ul>
           <label class="sort"><span>Сортировка</span>
@@ -361,7 +364,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script src="js/products-data.js?v=1" defer></script>
-<script src="js/catalog.js?v=2" defer></script>
+<script src="js/catalog.js?v=3" defer></script>
 <script src="js/cart.js?v=1" defer></script>
 <script src="js/site.js?v=11" defer></script>
 </body>
