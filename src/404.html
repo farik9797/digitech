@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<script>
+  // Только для макета на GitHub Pages: этот файл открывается по любому несуществующему адресу, в том числе вложенному
+  // (/digitech/catalog/videonablyudenie), и <base> возвращает относительные ссылки к корню макета. В WordPress 404.php это не нужно.
+  (() => { const b = document.createElement('base'); b.href = location.pathname.startsWith('/digitech/') ? '/digitech/' : '/'; document.head.append(b); })();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="only light">
+<meta name="robots" content="noindex, nofollow">
+<title>Страница не найдена — DIGITECH</title>
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=20">
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body data-page="404">
+<!-- @include header -->
+
+<main id="main" class="nf-page">
+  <div class="container">
+    <section class="nf" aria-labelledby="nf-title">
+      <p class="nf__code" aria-hidden="true">404</p>
+      <h1 class="nf__title" id="nf-title">Такой страницы нет</h1>
+      <p class="nf__lead">Ссылка устарела или в адресе опечатка. Найдите товар по модели или откройте нужный раздел каталога.</p>
+      <form class="search nf__search" role="search" action="catalog.html">
+        <label class="visually-hidden" for="nf-q">Поиск по товарам</label>
+        <input id="nf-q" name="q" type="search" placeholder="Модель или название товара" autocomplete="off">
+        <button type="submit" aria-label="Найти"><i data-icon="search"></i></button>
+      </form>
+      <div class="empty__actions">
+        <a class="btn btn--blue btn--sm" href="./">На главную</a>
+        <button class="btn btn--line btn--sm" type="button" data-open-dialog="dlg-consult" data-topic="Помочь с подбором">Помочь с подбором</button>
+      </div>
+    </section>
+
+    <section class="nf-cats" aria-labelledby="nf-cats-title">
+      <h2 class="h2" id="nf-cats-title">Разделы каталога</h2>
+      <div class="nf-cats__grid">
+        <a class="cat" href="catalog.html?cat=video"><img src="img/p-camera.webp" width="800" height="600" alt="" loading="lazy">Видеонаблюдение</a>
+        <a class="cat" href="catalog.html?cat=ups"><img src="img/p-ups-tower.webp" width="800" height="600" alt="" loading="lazy">ИБП</a>
+        <a class="cat" href="catalog.html?cat=net"><img src="img/p-switch.webp" width="800" height="600" alt="" loading="lazy">Сетевое оборудование</a>
+        <a class="cat" href="catalog.html?cat=turn"><img src="img/p-elt811.webp" width="800" height="600" alt="" loading="lazy">Турникеты</a>
+        <a class="cat" href="catalog.html?cat=barrier"><img src="img/p-bollards.webp" width="800" height="600" alt="" loading="lazy">Шлагбаумы и болларды</a>
+        <a class="cat" href="catalog.html?cat=vent"><img src="img/p-recuperator.webp" width="800" height="600" alt="" loading="lazy">Вентиляция</a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<!-- @include footer -->
+<script>
+  // К <base> из шапки: якорные ссылки (#main, #contacts) остаются на этой странице, а не уводят на главную
+  document.querySelectorAll('a[href^="#"]').forEach((a) => { a.href = location.pathname + location.search + a.getAttribute('href'); });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="js/products-data.js?v=1" defer></script>
+<script src="js/cart.js?v=1" defer></script>
+<script src="js/site.js?v=11" defer></script>
+</body>
+</html>
