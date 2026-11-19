@@ -2,11 +2,11 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<script>
-  // Только для макета на GitHub Pages: этот файл открывается по любому несуществующему адресу, в том числе вложенному
-  // (/digitech/catalog/videonablyudenie), и <base> возвращает относительные ссылки к корню макета. В WordPress 404.php это не нужно.
-  (() => { const b = document.createElement('base'); b.href = location.pathname.startsWith('/digitech/') ? '/digitech/' : '/'; document.head.append(b); })();
-</script>
+<!-- Только для макета на GitHub Pages: этот файл открывается по любому несуществующему адресу, в том числе вложенному
+     (/digitech/catalog/videonablyudenie), и <base> возвращает относительные ссылки к корню макета. Base стоит в разметке,
+     чтобы браузер сразу грузил CSS и JS по верному пути; скрипт меняет его только при локальном просмотре. В WordPress 404.php это не нужно. -->
+<base href="/digitech/">
+<script>if (!location.pathname.startsWith('/digitech/')) document.querySelector('base').href = '/';</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="only light">
 <meta name="robots" content="noindex, nofollow">
