@@ -57,3 +57,44 @@
     <p class="form-help" id="consult-help" aria-live="polite"></p>
   </form>
 </dialog>
+
+<dialog class="drawer" id="cart-drawer" aria-labelledby="cart-drawer-title">
+  <div class="drawer__in">
+    <div class="drawer__head">
+      <h2 id="cart-drawer-title" tabindex="-1">Корзина <span class="drawer__n" data-cart-n></span></h2>
+      <button class="round" type="button" aria-label="Закрыть корзину" data-close><i data-icon="x"></i></button>
+    </div>
+    <ul class="cart-list" data-cart-list></ul>
+    <div class="cart-empty" data-cart-empty>
+      <i data-icon="shopping-cart"></i>
+      <p>В корзине пока пусто</p>
+      <a class="btn btn--blue btn--sm" href="catalog.html">Перейти в каталог</a>
+    </div>
+    <div class="drawer__foot" data-cart-has hidden>
+      <div class="cart-total"><span>Итого</span><b data-cart-total></b></div>
+      <p class="cart-note">Без оплаты на сайте: менеджер перезвонит и выставит счёт</p>
+      <a class="btn btn--blue" href="checkout.html">Оформить заявку</a>
+      <a class="link" href="cart.html">Открыть корзину целиком</a>
+    </div>
+  </div>
+</dialog>
+
+<template id="tpl-cart-item">
+  <li class="cart-item">
+    <img class="cart-item__img" src="" width="800" height="600" alt="">
+    <span class="cart-item__img cart-item__noimg"><i data-icon="image-off"></i></span>
+    <div class="cart-item__body">
+      <a class="cart-item__name" href=""></a>
+      <span class="cart-item__model"></span>
+      <span class="cart-item__price"></span>
+    </div>
+    <div class="qty qty--sm cart-item__qty">
+      <button type="button" class="qty__btn" aria-label="Меньше" data-cart-step="-1"><i data-icon="minus"></i></button>
+      <label class="visually-hidden" for=""></label>
+      <input type="number" inputmode="numeric" min="1" max="999" value="1">
+      <button type="button" class="qty__btn" aria-label="Больше" data-cart-step="1"><i data-icon="plus"></i></button>
+    </div>
+    <b class="cart-item__sum"></b>
+    <button class="cart-item__remove" type="button"><i data-icon="trash-2"></i></button>
+  </li>
+</template>

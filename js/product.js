@@ -109,18 +109,14 @@
     ask.dataset.topic = `Цена: ${full(p)}`;
   }
 
-  // Количество: 1–999, хранится рядом с корзиной (в WordPress — количество в корзине Woo)
+  // Количество 1–999. Если товар уже в корзине, число в корзине меняется вместе с ним (js/cart.js)
   const qty = $('#qty');
-  let saved = {};
-  try { saved = JSON.parse(localStorage.getItem('dt-qty') || '{}'); } catch (e) { /* хранилище недоступно */ }
-  qty.value = String(saved[p.id] || 1);
   const syncQty = () => {
     const n = Math.min(999, Math.max(1, parseInt(qty.value, 10) || 1));
     qty.value = String(n);
     $('[data-qty="-1"]').disabled = n <= 1;
     $('[data-qty="1"]').disabled = n >= 999;
-    saved[p.id] = n;
-    try { localStorage.setItem('dt-qty', JSON.stringify(saved)); } catch (e) { /* хранилище недоступно */ }
+    if (window.DTCart && window.DTCart.has(p.id) && window.DTCart.qty(p.id) !== n) window.DTCart.set(p.id, n);
   };
   $$('[data-qty]').forEach((b) => b.addEventListener('click', () => { qty.value = String((parseInt(qty.value, 10) || 1) + Number(b.dataset.qty)); syncQty(); }));
   qty.addEventListener('change', syncQty);

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="only light">
+<meta name="robots" content="noindex, nofollow">
+<title>Корзина — DIGITECH</title>
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=17">
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body data-page="cart">
+<!-- @include header -->
+
+<main id="main" class="shop-page">
+  <div class="container">
+    <nav class="crumbs" aria-label="Хлебные крошки">
+      <ol>
+        <li><a href="./">Главная</a></li>
+        <li><span aria-current="page">Корзина</span></li>
+      </ol>
+    </nav>
+    <div class="cat-head">
+      <h1 class="cat-head__title" tabindex="-1">Корзина</h1>
+      <p class="cat-head__count" data-cart-n></p>
+    </div>
+
+    <div class="cart-layout" data-cart-has hidden>
+      <section aria-label="Товары в корзине">
+        <ul class="cart-list cart-list--page" data-cart-list></ul>
+        <a class="link cart-back" href="catalog.html"><i data-icon="chevron-left"></i>Продолжить выбор</a>
+      </section>
+      <aside class="summary" aria-labelledby="summary-title">
+        <h2 id="summary-title">Ваша заявка</h2>
+        <div class="cart-total"><span>Итого</span><b data-cart-total></b></div>
+        <a class="btn btn--blue" href="checkout.html">Оформить заявку</a>
+        <ul class="summary__notes">
+          <li><i data-icon="file-check"></i><span>Без оплаты на сайте: менеджер позвонит, уточнит состав и выставит счёт</span></li>
+          <li><i data-icon="truck"></i><span>Доставку оплачиваете отдельно службе доставки, самовывоз со склада в Ташкенте</span></li>
+        </ul>
+        <button class="link summary__help" type="button" data-open-dialog="dlg-consult" data-topic="Помочь с составом заказа">Помочь с подбором</button>
+      </aside>
+    </div>
+
+    <div class="empty shop-empty" data-cart-empty>
+      <i data-icon="shopping-cart"></i>
+      <h2>В корзине пока пусто</h2>
+      <p>Добавьте товары из каталога или напишите задачу: инженер подберёт оборудование и пришлёт расчёт.</p>
+      <div class="empty__actions">
+        <a class="btn btn--blue btn--sm" href="catalog.html">Перейти в каталог</a>
+        <button class="btn btn--line btn--sm" type="button" data-open-dialog="dlg-consult" data-topic="Помочь с подбором">Помочь с подбором</button>
+      </div>
+    </div>
+  </div>
+
+  <section class="strip" aria-label="Доставка и оплата">
+    <div class="container">
+      <ul>
+        <li><i data-icon="truck"></i><div><b>Самовывоз и доставка</b><small>Яндекс Доставка и BTS Express по Узбекистану</small></div></li>
+        <li><i data-icon="file-check"></i><div><b>Заявка без оплаты на сайте</b><small>Счёт выставит менеджер после звонка</small></div></li>
+        <li><i data-icon="receipt"></i><div><b>Безналичный расчёт</b><small>Оплата по счёту после подтверждения заявки</small></div></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<!-- @include footer -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="js/products-data.js?v=1" defer></script>
+<script src="js/cart.js?v=1" defer></script>
+<script src="js/site.js?v=9" defer></script>
+</body>
+</html>

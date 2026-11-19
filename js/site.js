@@ -111,25 +111,7 @@
   if (tabs) $$('button', tabs).forEach((b) => b.addEventListener('click', () => filter(b.dataset.filter)));
   $$('[data-tab-link]').forEach((a) => a.addEventListener('click', () => filter(a.dataset.tabLink)));
 
-  // ---- Корзина: в макете только счётчик
-  const countEl = $('[data-cart-count]');
-  let picked = new Set();
-  try { picked = new Set(JSON.parse(localStorage.getItem('dt-cart') || '[]')); } catch (e) { /* хранилище недоступно */ }
-  const renderCart = () => {
-    if (countEl) countEl.textContent = String(picked.size);
-    $$('[data-add]').forEach((b) => {
-      const on = picked.has(b.dataset.add);
-      b.setAttribute('aria-pressed', String(on));
-      $('span', b).textContent = on ? 'В корзине' : 'В корзину';
-    });
-  };
-  $$('[data-add]').forEach((b) => b.addEventListener('click', () => {
-    const id = b.dataset.add;
-    if (picked.has(id)) picked.delete(id); else picked.add(id);
-    try { localStorage.setItem('dt-cart', JSON.stringify([...picked])); } catch (e) { /* хранилище недоступно */ }
-    renderCart();
-  }));
-  renderCart();
+  // ---- Корзина: js/cart.js (подключается раньше этого файла)
 
   // ---- Окна: заявка и калькуляторы; тема заявки обновляется, пока её не правили руками
   $$('[data-open-dialog]').forEach((t) => t.addEventListener('click', (e) => {
