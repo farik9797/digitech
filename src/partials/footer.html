@@ -1,0 +1,59 @@
+<footer class="footer" id="contacts">
+  <h2 class="visually-hidden">Навигация и контакты</h2>
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <a class="footer__logo" href="./" aria-label="DIGITECH, на главную"><img src="img/logo-on-dark.webp" width="528" height="119" alt="DIGITECH" loading="lazy"></a>
+        <div class="footer__social"><a href="https://t.me/Mao0070" aria-label="Telegram"><i data-icon="telegram"></i></a></div>
+      </div>
+      <nav aria-label="Каталог">
+        <h3>Каталог</h3>
+        <ul>
+          <li><a href="catalog.html?cat=video">Видеонаблюдение</a></li>
+          <li><a href="catalog.html?cat=ups">ИБП</a></li>
+          <li><a href="catalog.html?cat=net">Сетевое оборудование</a></li>
+          <li><a href="catalog.html?cat=turn">Турникеты</a></li>
+          <li><a href="catalog.html?cat=barrier">Шлагбаумы и болларды</a></li>
+          <li><a href="catalog.html?cat=vent">Вентиляция</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Информация">
+        <h3>Информация</h3>
+        <ul>
+          <li><a href="./#services">Услуги</a></li>
+          <li><a href="./#about">О компании</a></li>
+          <li><a href="./#strip">Доставка и оплата</a></li>
+          <li><a href="./#features">Гарантия</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h3>Контакты</h3>
+        <ul class="footer__contacts">
+          <li><i data-icon="phone"></i><a href="tel:+998901887880">+998 90 188 78 80</a></li>
+          <li><i data-icon="mail"></i><a href="mailto:uzcctv@gmail.com">uzcctv@gmail.com</a></li>
+          <li><i data-icon="map-pin"></i><span>Ташкент, ул. Нукус, Миробод дехкон бозори</span></li>
+          <li><i data-icon="clock"></i><span>Пн–Пт: 09:00–18:00</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>© 2026 DIGITECH. Все права защищены.</p>
+      <ul><li><a href="#contacts">Политика конфиденциальности</a></li><li><a href="#contacts">Пользовательское соглашение</a></li></ul>
+    </div>
+  </div>
+</footer>
+<button class="to-top" type="button" aria-label="Наверх" data-to-top hidden><i data-icon="arrow-up"></i></button>
+
+<dialog id="dlg-consult" aria-labelledby="dlg-consult-title">
+  <form class="dlg" data-endpoint="" novalidate>
+    <div class="dlg__head"><h2 id="dlg-consult-title">Заявка на консультацию</h2><button class="round dlg__close" type="button" aria-label="Закрыть" data-close><i data-icon="x"></i></button></div>
+    <div class="fields">
+      <label class="field"><span>Имя</span><input name="name" type="text" autocomplete="name" required aria-describedby="consult-help"></label>
+      <label class="field"><span>Телефон</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+998" required aria-describedby="consult-help"></label>
+      <label class="field field--wide"><span>Задача</span><textarea name="task" rows="4" data-topic-field></textarea></label>
+    </div>
+    <label class="check"><input name="consent" type="checkbox" required aria-describedby="consult-help"> <span>Согласен на обработку контактных данных</span></label>
+    <button class="btn btn--blue" type="submit">Отправить заявку</button>
+    <p class="form-help" id="consult-help" aria-live="polite"></p>
+  </form>
+</dialog>

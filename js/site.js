@@ -11,7 +11,7 @@
     new ResizeObserver(() => document.documentElement.style.setProperty('--header-h', header.offsetHeight + 'px')).observe(header);
   }
 
-  // ---- Слайдер: без автопрокрутки, кроссфейд в CSS
+  // ---- Слайдер: кроссфейд в CSS, автопрокрутка ниже
   const slider = $('[data-slider]');
   if (slider) {
     const slides = $$('.slide', slider);
@@ -31,6 +31,17 @@
       if (e.key === 'ArrowLeft') show(current - 1);
       if (e.key === 'ArrowRight') show(current + 1);
     });
+
+    // ---- Автопрокрутка, 5 с на слайд. Таймер — CSS-анимация полоски на активной точке:
+    // её пауза (наведение, фокус с клавиатуры, hero вне экрана) останавливает и листание.
+    // При «уменьшить движение» анимации нет, значит, нет и автопрокрутки.
+    if (!reduce.matches) {
+      slider.setAttribute('data-autoplay', '');
+      slider.addEventListener('animationend', (e) => { if (e.animationName === 'dot-progress') show(current + 1); });
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(([e]) => slider.toggleAttribute('data-offscreen', !e.isIntersecting)).observe(slider);
+      }
+    }
 
     // ---- Видео на фоне слайдов: грузится и играет только у активного слайда и только пока hero на экране.
     // При «уменьшить движение» и режиме экономии трафика остаётся фото.
@@ -212,9 +223,12 @@
       const { desktop } = ctx.conditions;
 
       // 1. Первый экран «уходит вглубь»: фото наклоняется и отдаляется, текст обгоняет его
-      gsap.timeline({ scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.6 } })
-        .to('.hero__media', desktop ? { rotateX: 8, z: -80, scale: 1.06, yPercent: 8, transformPerspective: 1400, ease: 'none' } : { scale: 1.08, yPercent: 6, ease: 'none' }, 0)
-        .to('.hero .slide__text', { y: desktop ? -40 : -24, opacity: 0.4, ease: 'none' }, 0);
+      // Блоки 1, 3 и 5 есть только на главной: на других страницах пропускаем, чтобы GSAP не искал пустые цели.
+      if ($('.hero')) {
+        gsap.timeline({ scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.6 } })
+          .to('.hero__media', desktop ? { rotateX: 8, z: -80, scale: 1.06, yPercent: 8, transformPerspective: 1400, ease: 'none' } : { scale: 1.08, yPercent: 6, ease: 'none' }, 0)
+          .to('.hero .slide__text', { y: desktop ? -40 : -24, opacity: 0.4, ease: 'none' }, 0);
+      }
 
       // 2. Фото монтажника «встаёт» из наклона, как в Container Scroll (21st.dev)
       if (document.querySelector('.services__pic')) {
@@ -229,27 +243,33 @@
       }
 
       // 3. Промо: камеры поворачиваются к зрителю, плашка «%» летит в своей плоскости
-      gsap.fromTo('.promo__pic img', { rotateY: desktop ? -12 : -5, x: 24 }, {
-        rotateY: desktop ? 4 : 2, x: -12, transformPerspective: 1000, ease: 'none',
-        scrollTrigger: { trigger: '.promo__in', start: 'top bottom', end: 'bottom top', scrub: 0.8 },
-      });
-      gsap.fromTo('.promo__badge', { y: 40, rotate: -8 }, {
-        y: -40, rotate: 6, ease: 'none',
-        scrollTrigger: { trigger: '.promo__in', start: 'top bottom', end: 'bottom top', scrub: 0.8 },
-      });
+      if ($('.promo__in')) {
+        gsap.fromTo('.promo__pic img', { rotateY: desktop ? -12 : -5, x: 24 }, {
+          rotateY: desktop ? 4 : 2, x: -12, transformPerspective: 1000, ease: 'none',
+          scrollTrigger: { trigger: '.promo__in', start: 'top bottom', end: 'bottom top', scrub: 0.8 },
+        });
+        gsap.fromTo('.promo__badge', { y: 40, rotate: -8 }, {
+          y: -40, rotate: 6, ease: 'none',
+          scrollTrigger: { trigger: '.promo__in', start: 'top bottom', end: 'bottom top', scrub: 0.8 },
+        });
+      }
 
       // 4. Карточки товаров «ложатся на стол» при появлении (один раз). Без opacity: товары видны и до срабатывания триггера
-      gsap.from('.product:not([hidden])', {
-        rotateX: desktop ? 14 : 0, y: desktop ? 40 : 24, z: desktop ? -40 : 0, transformPerspective: 1200,
-        duration: 0.7, ease: 'power3.out', stagger: desktop ? 0.06 : 0.04,
-        scrollTrigger: { trigger: '.products', start: 'top 85%', once: true },
-      });
+      if ($('.product:not([hidden])')) {
+        gsap.from('.product:not([hidden])', {
+          rotateX: desktop ? 14 : 0, y: desktop ? 40 : 24, z: desktop ? -40 : 0, transformPerspective: 1200,
+          duration: 0.7, ease: 'power3.out', stagger: desktop ? 0.06 : 0.04,
+          scrollTrigger: { trigger: '.products', start: 'top 85%', once: true },
+        });
+      }
 
       // 5. Склад в блоке «О компании» разворачивается к зрителю
-      gsap.fromTo('.about__pic', desktop ? { rotateY: 12, z: -60 } : { y: 24, scale: 0.97 }, {
-        rotateY: 0, z: 0, y: 0, scale: 1, ease: 'none',
-        scrollTrigger: { trigger: '.about', start: 'top 85%', end: 'center 55%', scrub: 0.6 },
-      });
+      if ($('.about__pic')) {
+        gsap.fromTo('.about__pic', desktop ? { rotateY: 12, z: -60 } : { y: 24, scale: 0.97 }, {
+          rotateY: 0, z: 0, y: 0, scale: 1, ease: 'none',
+          scrollTrigger: { trigger: '.about', start: 'top 85%', end: 'center 55%', scrub: 0.6 },
+        });
+      }
 
       // 6. Регистратор и ИБП в карточках калькуляторов «встают на место» (только там, где видны)
       if (desktop && matchMedia('(min-width: 1241px)').matches) {

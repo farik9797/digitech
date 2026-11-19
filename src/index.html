@@ -12,62 +12,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=8">
+<link rel="stylesheet" href="css/style.css?v=13">
 </head>
 <body>
-<a class="skip" href="#main">К содержанию</a>
-
-<aside class="topbar" aria-label="Режим работы и контакты">
-  <div class="container topbar__in">
-    <ul>
-      <li><i data-icon="shield-check"></i><span>20+ лет на рынке<span class="hide-sm"> систем безопасности</span></span></li>
-      <li><i data-icon="truck"></i>Доставка по всему Узбекистану</li>
-    </ul>
-    <ul class="topbar__right">
-      <li><i data-icon="clock"></i>Пн–Пт: 09:00–18:00</li>
-      <li><a href="tel:+998901887880"><i data-icon="phone"></i>+998 90 188 78 80</a></li>
-    </ul>
-  </div>
-</aside>
-
-<header class="header" data-header>
-  <div class="container header__main">
-    <a class="header__logo" href="index.html" aria-label="DIGITECH, на главную"><img src="img/logo-on-light.webp" srcset="img/logo-on-light.webp 1x, img/logo-on-light-2x.webp 2x" width="400" height="84" alt="DIGITECH"></a>
-    <div class="catalog" data-catalog>
-      <button class="btn btn--blue catalog__toggle" type="button" aria-expanded="false" aria-controls="mega"><i data-icon="layout-grid"></i><span class="catalog__label">Каталог товаров</span><i data-icon="chevron-down" class="chev"></i></button>
-      <div class="mega" id="mega" hidden>
-        <a href="#hits" data-tab-link="video"><img src="img/p-camera.webp" alt="" width="800" height="600" loading="lazy">Видеонаблюдение</a>
-        <a href="#hits" data-tab-link="ups"><img src="img/p-ups-tower.webp" alt="" width="800" height="600" loading="lazy">ИБП</a>
-        <a href="#hits" data-tab-link="all"><img src="img/p-switch.webp" alt="" width="800" height="600" loading="lazy">Сетевое оборудование</a>
-        <a href="#hits" data-tab-link="turn"><img src="img/p-elt811.webp" alt="" width="800" height="600" loading="lazy">Турникеты</a>
-        <a href="#hits" data-tab-link="all"><img src="img/p-bollards.webp" alt="" width="800" height="600" loading="lazy">Шлагбаумы и болларды</a>
-        <a href="#hits" data-tab-link="vent"><img src="img/p-recuperator.webp" alt="" width="800" height="600" loading="lazy">Вентиляция</a>
-      </div>
-    </div>
-    <form class="search" role="search" action="#hits">
-      <label class="visually-hidden" for="q">Поиск по товарам</label>
-      <input id="q" name="q" type="search" placeholder="Поиск по модели или названию" autocomplete="off">
-      <button type="submit" aria-label="Найти"><i data-icon="search"></i></button>
-    </form>
-    <div class="header__phone">
-      <i data-icon="phone"></i>
-      <div><a href="tel:+998901887880">+998 90 188 78 80</a><a class="link" href="#consult" data-open-dialog="dlg-consult" data-topic="Обратный звонок">Обратный звонок</a></div>
-    </div>
-    <a class="header__cart" href="#hits"><i data-icon="shopping-cart"></i><span class="visually-hidden">Корзина, товаров:</span><span class="badge" data-cart-count>0</span></a>
-    <button class="round header__menu" type="button" aria-expanded="false" aria-controls="nav" aria-label="Меню" data-menu><i data-icon="menu"></i></button>
-  </div>
-</header>
-<nav class="nav" id="nav" aria-label="Основное меню">
-  <div class="container">
-    <ul>
-      <li><a href="#services">Услуги</a></li>
-      <li><a href="#hits">Каталог</a></li>
-      <li><a href="#strip">Доставка и оплата</a></li>
-      <li><a href="#about">О компании</a></li>
-      <li><a href="#contacts">Контакты</a></li>
-    </ul>
-  </div>
-</nav>
+<!-- @include header -->
 
 <main id="main">
   <section class="hero" aria-roledescription="карусель" aria-label="Предложения DIGITECH" data-slider data-slide="1">
@@ -91,7 +39,7 @@
           <p class="eyebrow eyebrow--light">Склад в Ташкенте</p>
           <h1 class="slide__title">Безопасность и контроль для вашего бизнеса</h1>
           <p class="slide__lead">Камеры Hikvision и Dahua, ИБП MarsRiva, сетевое оборудование и турникеты. Цены в сумах, подбор под объект делает инженер.</p>
-          <a class="btn btn--lime" href="#hits">Перейти в каталог<i data-icon="arrow-right"></i></a>
+          <a class="btn btn--lime" href="catalog.html">Перейти в каталог<i data-icon="arrow-right"></i></a>
         </div>
       </div>
       <div class="slide" id="slide-2" role="group" aria-roledescription="слайд" aria-label="2 из 3" hidden>
@@ -99,7 +47,7 @@
           <p class="eyebrow eyebrow--light">Контроль доступа</p>
           <p class="slide__title">Турникеты и шлагбаумы для проходных</p>
           <p class="slide__lead">Стеклянные турникеты на два прохода, шлагбаумы и болларды. Монтаж и настройку делает наш технический отдел.</p>
-          <a class="btn btn--lime" href="#hits" data-tab-link="turn">Смотреть турникеты<i data-icon="arrow-right"></i></a>
+          <a class="btn btn--lime" href="catalog.html?cat=turn">Смотреть турникеты<i data-icon="arrow-right"></i></a>
         </div>
       </div>
       <div class="slide" id="slide-3" role="group" aria-roledescription="слайд" aria-label="3 из 3" hidden>
@@ -126,12 +74,12 @@
     <div class="container carousel" data-carousel>
       <button class="round" type="button" aria-label="Прокрутить разделы назад" data-scroll="-1"><i data-icon="chevron-left"></i></button>
       <div class="carousel__track" role="region" tabindex="0" aria-label="Разделы каталога">
-        <a class="cat" href="#hits" data-tab-link="video"><img src="img/p-camera.webp" width="800" height="600" alt="" loading="lazy">Видеонаблюдение</a>
-        <a class="cat" href="#hits" data-tab-link="ups"><img src="img/p-ups-tower.webp" width="800" height="600" alt="" loading="lazy">ИБП</a>
-        <a class="cat" href="#hits" data-tab-link="all"><img src="img/p-switch.webp" width="800" height="600" alt="" loading="lazy">Сетевое оборудование</a>
-        <a class="cat" href="#hits" data-tab-link="turn"><img src="img/p-elt811.webp" width="800" height="600" alt="" loading="lazy">Турникеты</a>
-        <a class="cat" href="#hits" data-tab-link="all"><img src="img/p-bollards.webp" width="800" height="600" alt="" loading="lazy">Шлагбаумы и болларды</a>
-        <a class="cat" href="#hits" data-tab-link="vent"><img src="img/p-recuperator.webp" width="800" height="600" alt="" loading="lazy">Вентиляция</a>
+        <a class="cat" href="catalog.html?cat=video"><img src="img/p-camera.webp" width="800" height="600" alt="" loading="lazy">Видеонаблюдение</a>
+        <a class="cat" href="catalog.html?cat=ups"><img src="img/p-ups-tower.webp" width="800" height="600" alt="" loading="lazy">ИБП</a>
+        <a class="cat" href="catalog.html?cat=net"><img src="img/p-switch.webp" width="800" height="600" alt="" loading="lazy">Сетевое оборудование</a>
+        <a class="cat" href="catalog.html?cat=turn"><img src="img/p-elt811.webp" width="800" height="600" alt="" loading="lazy">Турникеты</a>
+        <a class="cat" href="catalog.html?cat=barrier"><img src="img/p-bollards.webp" width="800" height="600" alt="" loading="lazy">Шлагбаумы и болларды</a>
+        <a class="cat" href="catalog.html?cat=vent"><img src="img/p-recuperator.webp" width="800" height="600" alt="" loading="lazy">Вентиляция</a>
       </div>
       <button class="round" type="button" aria-label="Прокрутить разделы вперёд" data-scroll="1"><i data-icon="chevron-right"></i></button>
     </div>
@@ -179,7 +127,7 @@
     <div class="container">
       <div class="hits__head">
         <h2 class="h2" id="hits-title">Оборудование в наличии</h2>
-        <a class="link" href="#hits" data-tab-link="all">Весь каталог<i data-icon="arrow-right"></i></a>
+        <a class="link" href="catalog.html">Весь каталог<i data-icon="arrow-right"></i></a>
       </div>
       <div class="tabs" role="group" aria-label="Фильтр по разделам" data-tabs>
         <button type="button" aria-pressed="true" data-filter="all">Все</button>
@@ -234,12 +182,12 @@
         <p class="brands__label">Бренды<br>в каталоге</p>
         <button class="round" type="button" aria-label="Прокрутить бренды назад" data-scroll="-1"><i data-icon="chevron-left"></i></button>
         <div class="carousel__track" role="region" tabindex="0" aria-label="Бренды">
-          <a class="brand" href="#hits" data-tab-link="all">Hikvision</a>
-          <a class="brand" href="#hits" data-tab-link="all">Dahua</a>
-          <a class="brand" href="#hits" data-tab-link="all">TP-Link</a>
-          <a class="brand" href="#hits" data-tab-link="all">Panasonic</a>
-          <a class="brand" href="#hits" data-tab-link="all">MarsRiva</a>
-          <a class="brand" href="#hits" data-tab-link="all">HOL-TOP</a>
+          <a class="brand" href="catalog.html?brand=hikvision">Hikvision</a>
+          <a class="brand" href="catalog.html?brand=dahua">Dahua</a>
+          <a class="brand" href="catalog.html?brand=tp-link">TP-Link</a>
+          <a class="brand" href="catalog.html?brand=panasonic">Panasonic</a>
+          <a class="brand" href="catalog.html?brand=marsriva">MarsRiva</a>
+          <a class="brand" href="catalog.html?brand=hol-top">HOL-TOP</a>
         </div>
         <button class="round" type="button" aria-label="Прокрутить бренды вперёд" data-scroll="1"><i data-icon="chevron-right"></i></button>
       </div>
@@ -323,65 +271,7 @@
   </section>
 </main>
 
-<footer class="footer" id="contacts">
-  <h2 class="visually-hidden">Навигация и контакты</h2>
-  <div class="container">
-    <div class="footer__grid">
-      <div>
-        <a class="footer__logo" href="index.html" aria-label="DIGITECH, на главную"><img src="img/logo-on-dark.webp" width="528" height="119" alt="DIGITECH" loading="lazy"></a>
-        <div class="footer__social"><a href="https://t.me/Mao0070" aria-label="Telegram"><i data-icon="telegram"></i></a></div>
-      </div>
-      <nav aria-label="Каталог">
-        <h3>Каталог</h3>
-        <ul>
-          <li><a href="#hits" data-tab-link="video">Видеонаблюдение</a></li>
-          <li><a href="#hits" data-tab-link="ups">ИБП</a></li>
-          <li><a href="#hits" data-tab-link="all">Сетевое оборудование</a></li>
-          <li><a href="#hits" data-tab-link="turn">Турникеты</a></li>
-          <li><a href="#hits" data-tab-link="all">Шлагбаумы и болларды</a></li>
-          <li><a href="#hits" data-tab-link="vent">Вентиляция</a></li>
-        </ul>
-      </nav>
-      <nav aria-label="Информация">
-        <h3>Информация</h3>
-        <ul>
-          <li><a href="#services">Услуги</a></li>
-          <li><a href="#about">О компании</a></li>
-          <li><a href="#strip">Доставка и оплата</a></li>
-          <li><a href="#features">Гарантия</a></li>
-        </ul>
-      </nav>
-      <div>
-        <h3>Контакты</h3>
-        <ul class="footer__contacts">
-          <li><i data-icon="phone"></i><a href="tel:+998901887880">+998 90 188 78 80</a></li>
-          <li><i data-icon="mail"></i><a href="mailto:uzcctv@gmail.com">uzcctv@gmail.com</a></li>
-          <li><i data-icon="map-pin"></i><span>Ташкент, ул. Нукус, Миробод дехкон бозори</span></li>
-          <li><i data-icon="clock"></i><span>Пн–Пт: 09:00–18:00</span></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer__bottom">
-      <p>© 2026 DIGITECH. Все права защищены.</p>
-      <ul><li><a href="#contacts">Политика конфиденциальности</a></li><li><a href="#contacts">Пользовательское соглашение</a></li></ul>
-    </div>
-  </div>
-</footer>
-<button class="to-top" type="button" aria-label="Наверх" data-to-top hidden><i data-icon="arrow-up"></i></button>
-
-<dialog id="dlg-consult" aria-labelledby="dlg-consult-title">
-  <form class="dlg" data-endpoint="" novalidate>
-    <div class="dlg__head"><h2 id="dlg-consult-title">Заявка на консультацию</h2><button class="round dlg__close" type="button" aria-label="Закрыть" data-close><i data-icon="x"></i></button></div>
-    <div class="fields">
-      <label class="field"><span>Имя</span><input name="name" type="text" autocomplete="name" required aria-describedby="consult-help"></label>
-      <label class="field"><span>Телефон</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+998" required aria-describedby="consult-help"></label>
-      <label class="field field--wide"><span>Задача</span><textarea name="task" rows="4" data-topic-field></textarea></label>
-    </div>
-    <label class="check"><input name="consent" type="checkbox" required aria-describedby="consult-help"> <span>Согласен на обработку контактных данных</span></label>
-    <button class="btn btn--blue" type="submit">Отправить заявку</button>
-    <p class="form-help" id="consult-help" aria-live="polite"></p>
-  </form>
-</dialog>
+<!-- @include footer -->
 
 <dialog id="dlg-ups" aria-labelledby="dlg-ups-title">
   <div class="dlg">
@@ -417,6 +307,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-<script src="js/site.js?v=5" defer></script>
+<script src="js/site.js?v=8" defer></script>
 </body>
 </html>
