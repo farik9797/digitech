@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="only light">
+<meta name="robots" content="noindex, nofollow">
+<title>Расчёт архива видеонаблюдения онлайн — DIGITECH</title>
+<meta name="description" content="Калькулятор архива видеонаблюдения: число камер, разрешение, FPS, кодек, часы записи и объём HDD. Сколько дней хранит регистратор. Подбор в Ташкенте.">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=19">
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body data-page="calc">
+<!-- @include header -->
+
+<main id="main" class="calc-page">
+  <div class="container">
+    <nav class="crumbs" aria-label="Хлебные крошки">
+      <ol>
+        <li><a href="./">Главная</a></li>
+        <li><span aria-current="page">Расчёт архива видеонаблюдения</span></li>
+      </ol>
+    </nav>
+    <div class="cat-head co-head">
+      <h1 class="cat-head__title">Расчёт архива видеонаблюдения</h1>
+      <p class="co-lead">Сколько дней регистратор хранит записи при вашем числе камер и объёме дисков. Результат ориентировочный.</p>
+    </div>
+
+    <div class="calc-tool" data-calc-box>
+      <form class="calc-form" data-calc="arc" novalidate>
+        <div class="fields">
+          <label class="field"><span>Количество камер</span><input name="cams" type="number" inputmode="numeric" min="1" value="8"></label>
+          <label class="field"><span>Разрешение</span><select name="res"><option value="12">12 Мп (4000×3000)</option><option value="8.84736">4K / 8 Мп (4096×2160)</option><option value="8.2944">8 Мп (3840×2160)</option><option value="6.291456">6 Мп (3072×2048)</option><option value="4.9152">5 Мп (2560×1920)</option><option value="4.194304">4 Мп (2048×2048)</option><option value="3.6864">4 Мп (2560×1440)</option><option value="3.145728">3 Мп (2048×1536)</option><option value="2.359296">2,4 Мп (1536×1536)</option><option value="2.0736" selected>2 Мп (1920×1080)</option></select></label>
+          <label class="field"><span>Кадров в секунду</span><select name="fps"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>9</option><option>10</option><option>12</option><option>15</option><option>16</option><option>18</option><option>20</option><option>22</option><option selected>25</option><option>50</option></select></label>
+          <label class="field"><span>Кодек</span><select name="codec"><option value="1" selected>H.264</option><option value="0.5">H.265</option><option value="0.45">H.265+</option></select><small>Есть в настройках камеры</small></label>
+          <label class="field"><span>Запись, часов в сутки</span><input name="hours" type="number" inputmode="numeric" min="1" max="24" value="24"><small>24, если камеры пишут постоянно</small></label>
+          <label class="field"><span>Объём дисков, ТБ</span><select name="hdd"><option>1</option><option>2</option><option selected>4</option><option>6</option><option>8</option><option>10</option><option>12</option><option>16</option></select><small>Сумма по всем дискам регистратора</small></label>
+        </div>
+      </form>
+      <aside class="result calc-result" aria-label="Результат расчёта">
+        <span>Глубина архива</span>
+        <output data-out="arc">≈ 11 дней</output>
+        <small data-out="bitrate">Битрейт 4 096 Кбит/с на камеру</small>
+        <button class="btn btn--lime" type="button" data-open-dialog="dlg-consult" data-topic="Подбор регистратора и дисков по расчёту" data-calc-ask>Подобрать регистратор с инженером</button>
+        <a class="calc-result__link" href="catalog.html?cat=video">Камеры и регистраторы в каталоге</a>
+      </aside>
+    </div>
+
+    <section class="calc-how" aria-labelledby="how-title">
+      <h2 class="h2" id="how-title">Как считаем</h2>
+      <ol class="steps">
+        <li><span class="steps__n" aria-hidden="true">1</span><h3>Битрейт камеры</h3><p>За основу берём 4 096 Кбит/с: камера 2 Мп, 25 кадров в секунду, H.264. Значение растёт пропорционально пикселям и частоте кадров.</p></li>
+        <li><span class="steps__n" aria-hidden="true">2</span><h3>Поправка на кодек</h3><p>H.265 считаем как половину потока H.264, H.265+ как 45 %. Так 4 Мп на H.265 пишет примерно столько же, сколько 2 Мп на H.264.</p></li>
+        <li><span class="steps__n" aria-hidden="true">3</span><h3>Дни архива</h3><p>Объём дисков делим на суточный поток всех камер с учётом часов записи и округляем вниз. Пример по умолчанию: 8 камер на 4 ТБ хватает на 11 дней.</p></li>
+      </ol>
+      <p class="calc-note">Реальный битрейт зависит от сцены: ночью и при движении в кадре поток выше, и архив короче расчётного.</p>
+    </section>
+
+    <section class="calc-other" aria-label="Другой расчёт">
+      <article class="calc-card">
+        <span class="calc-card__icon"><i data-icon="zap"></i></span>
+        <div class="calc-card__text">
+          <h2>Время работы ИБП</h2>
+          <p>Сколько система проработает от аккумуляторов при вашей нагрузке.</p>
+          <a class="link" href="calc-ups.html">Рассчитать<i data-icon="arrow-right"></i></a>
+        </div>
+        <img src="img/p-ups-tower.webp" width="800" height="600" alt="" loading="lazy">
+      </article>
+    </section>
+  </div>
+</main>
+
+<!-- @include footer -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="js/products-data.js?v=1" defer></script>
+<script src="js/cart.js?v=1" defer></script>
+<script src="js/calc.js?v=1" defer></script>
+<script src="js/site.js?v=11" defer></script>
+</body>
+</html>

@@ -120,7 +120,7 @@
     e.preventDefault();
     const field = $('[data-topic-field]', dlg);
     if (field && t.dataset.topic && (!field.value.trim() || field.value === field.dataset.auto)) {
-      field.value = field.dataset.auto = t.dataset.topic + ': ';
+      field.value = field.dataset.auto = t.dataset.topic.endsWith('\n') ? t.dataset.topic : `${t.dataset.topic}: `;
     }
     $$('dialog[open]').forEach((d) => d.close());
     dlg.showModal();
@@ -130,39 +130,7 @@
     d.addEventListener('click', (e) => { if (e.target === d) d.close(); });
   });
 
-  // ---- Калькуляторы: формулы с текущего сайта (site/app/storefront.tsx)
-  const nb = (s) => s.replace(/ /g, ' ');
-  const val = (f, n) => Number(f.elements[n].value);
-  const ups = $('[data-calc="ups"]');
-  const upsOut = $('[data-out="ups"]');
-  const calcUps = () => {
-    const power = val(ups, 'power'), ah = val(ups, 'ah'), volt = val(ups, 'voltage');
-    if (!(power > 0) || !(ah > 0) || !(volt > 0)) { upsOut.textContent = 'Укажите мощность и АКБ'; return; }
-    const usable = Math.max(0, ah * (1 - ((val(ups, 'depth') || 0) + (val(ups, 'wear') || 0)) / 100));
-    const effRaw = val(ups, 'eff') || 0;
-    const eff = Math.max(0, Math.min(1, effRaw > 1 ? effRaw / 100 : effRaw));
-    const ideal = (usable * volt * eff) / power;
-    const corr = Math.max(30, Math.min(100, 51.437 * Math.pow(Math.max(0, ideal), 0.28))) / 100;
-    const minutes = Math.max(0, Math.round(ideal * corr * 60));
-    const h = Math.floor(minutes / 60), m = minutes % 60;
-    upsOut.textContent = nb(h ? `≈ ${h} ч ${String(m).padStart(2, '0')} мин` : `≈ ${m} мин`);
-  };
-  if (ups && upsOut) { ups.addEventListener('input', calcUps); calcUps(); }
-
-  const arc = $('[data-calc="arc"]');
-  const arcOut = $('[data-out="arc"]');
-  const rateOut = $('[data-out="bitrate"]');
-  const calcArc = () => {
-    const cams = val(arc, 'cams');
-    if (!(cams > 0)) { arcOut.textContent = 'Укажите число камер'; return; }
-    const kbps = 4096 * (val(arc, 'res') / 2.0736) * (val(arc, 'fps') / 25) * val(arc, 'codec');
-    const hours = Math.min(24, Math.max(1, val(arc, 'hours') || 24));
-    const days = Math.max(1, Math.floor((val(arc, 'hdd') * 1e12 * 8) / (cams * kbps * 1000 * 86400 * (hours / 24))));
-    const word = (n) => (n % 10 === 1 && n % 100 !== 11 ? 'день' : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 'дня' : 'дней');
-    arcOut.textContent = nb(`≈ ${days} ${word(days)}`);
-    rateOut.textContent = nb(`Битрейт ${Math.round(kbps)} Кбит/с на камеру`);
-  };
-  if (arc && arcOut) { arc.addEventListener('input', calcArc); calcArc(); }
+  // ---- Калькуляторы: js/calc.js
 
   // ---- Форма заявки: адреса отправки нет, успех не показываем
   $$('form[data-endpoint]').forEach((form) => {
