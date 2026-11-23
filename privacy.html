@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=21">
+<link rel="stylesheet" href="css/style.css?v=22">
 <script>document.documentElement.classList.add('js');</script>
 </head>
 <body data-page="privacy">
@@ -203,25 +203,75 @@
   </form>
 </dialog>
 
-<dialog class="drawer" id="cart-drawer" aria-labelledby="cart-drawer-title">
-  <div class="drawer__in">
-    <div class="drawer__head">
-      <h2 id="cart-drawer-title" tabindex="-1">Корзина <span class="drawer__n" data-cart-n></span></h2>
-      <button class="round" type="button" aria-label="Закрыть корзину" data-close><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18" /> <path d="m6 6 12 12" /></svg></button>
-    </div>
+<!-- Корзина: окно по центру со списком и формой заявки, как на старом сайте (просьба клиента). В WordPress — footer.php. -->
+<dialog class="drawer" id="cart-drawer" aria-labelledby="cart-drawer-title" data-order-root>
+  <div class="drawer__head">
+    <h2 id="cart-drawer-title" tabindex="-1">Ваша корзина <span class="drawer__n" data-cart-n></span></h2>
+    <button class="round" type="button" aria-label="Закрыть корзину" data-close><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18" /> <path d="m6 6 12 12" /></svg></button>
+  </div>
+  <div class="drawer__body" data-order-main>
     <ul class="cart-list" data-cart-list></ul>
     <div class="cart-empty" data-cart-empty>
       <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m2.05 2.05 1.099-.028a1 1 0 0 1 1.008.815l2.69 14.347A1 1 0 0 0 7.83 18H18" /> <path d="M4.563 5h16.435a1 1 0 0 1 .981 1.204l-1.026 6.226A2 2 0 0 1 18.962 14H6.25" /> <circle cx="18" cy="20" r="2" /> <circle cx="8" cy="20" r="2" /></svg>
       <p>В корзине пока пусто</p>
       <a class="btn btn--blue btn--sm" href="catalog.html">Перейти в каталог</a>
     </div>
-    <div class="drawer__foot" data-cart-has hidden>
+    <div class="drawer__order" data-cart-has hidden>
       <div class="cart-total"><span>Итого</span><b data-cart-total></b></div>
-      <p class="cart-note">Без оплаты на сайте: менеджер перезвонит и выставит счёт</p>
-      <a class="btn btn--blue" href="checkout.html">Оформить заявку</a>
-      <a class="link" href="cart.html">Открыть корзину целиком</a>
+      <form class="drawer__form" novalidate data-order>
+        <div class="fields">
+          <div class="field">
+            <label for="cm-name">Имя <abbr title="обязательное поле">*</abbr></label>
+            <input id="cm-name" name="name" type="text" maxlength="100" autocomplete="name" placeholder="Как к вам обращаться" required aria-describedby="cm-name-err">
+            <small class="field__error" id="cm-name-err"></small>
+          </div>
+          <div class="field">
+            <label for="cm-phone">Телефон <abbr title="обязательное поле">*</abbr></label>
+            <input id="cm-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+998 90 123 45 67" required aria-describedby="cm-phone-err">
+            <small class="field__error" id="cm-phone-err"></small>
+          </div>
+          <div class="field">
+            <label for="cm-org">Организация</label>
+            <input id="cm-org" name="organization" type="text" maxlength="160" autocomplete="organization">
+          </div>
+          <div class="field">
+            <label for="cm-messenger">Мессенджер для связи</label>
+            <select id="cm-messenger" name="messenger">
+              <option value="">Не нужен</option>
+              <option value="telegram">Telegram</option>
+              <option value="whatsapp">WhatsApp</option>
+            </select>
+          </div>
+          <div class="field field--wide">
+            <label for="cm-delivery">Способ получения</label>
+            <select id="cm-delivery" name="delivery">
+              <option value="Уточнить у менеджера">Уточнить у менеджера</option>
+              <option value="Самовывоз">Самовывоз со склада в Ташкенте</option>
+              <option value="Яндекс Доставка">Яндекс Доставка</option>
+              <option value="BTS Express">BTS Express, по Узбекистану</option>
+            </select>
+          </div>
+          <div class="field field--wide">
+            <label for="cm-comment">Комментарий</label>
+            <textarea id="cm-comment" name="comment" rows="3" maxlength="2000" placeholder="Например: объект, сроки, нужен ли монтаж"></textarea>
+          </div>
+        </div>
+        <div class="hp" aria-hidden="true"><label>Сайт <input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
+        <label class="check"><input name="consent" type="checkbox" required aria-describedby="cm-consent-err"> <span>Согласен на обработку персональных данных по <a href="privacy.html">политике конфиденциальности</a></span></label>
+        <small class="field__error" id="cm-consent-err"></small>
+        <button class="btn btn--blue" type="submit">Отправить заявку</button>
+        <p class="form-help" aria-live="polite" data-order-help></p>
+        <p class="cart-note">Оплачивать на сайте ничего не нужно: менеджер перезвонит и выставит счёт</p>
+      </form>
     </div>
   </div>
+  <section class="done" aria-labelledby="cm-done-title" data-done hidden>
+    <span class="done__icon"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5" /></svg></span>
+    <h2 id="cm-done-title" tabindex="-1">Заявка <span data-done-num></span> принята</h2>
+    <p>Менеджер позвонит в рабочее время, Пн–Пт с 09:00 до 18:00, уточнит состав и выставит счёт. Срочный вопрос — звоните: <a href="tel:+998901887880">+998 90 188 78 80</a>.</p>
+    <p class="done__mock">Это образец экрана после отправки. В макете заявка никуда не уходит, номер собран для примера.</p>
+    <button class="btn btn--blue btn--sm" type="button" data-close>Продолжить</button>
+  </section>
 </dialog>
 
 <template id="tpl-cart-item">
@@ -240,13 +290,14 @@
       <button type="button" class="qty__btn" aria-label="Больше" data-cart-step="1"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14" /> <path d="M12 5v14" /></svg></button>
     </div>
     <b class="cart-item__sum"></b>
-    <button class="cart-item__remove" type="button"><i data-icon="trash-2"></i></button>
+    <button class="cart-item__remove" type="button"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10 11v6" /> <path d="M14 11v6" /> <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" /> <path d="M3 6h18" /> <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" /></svg></button>
   </li>
 </template>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script src="js/products-data.js?v=1" defer></script>
 <script src="js/cart.js?v=1" defer></script>
-<script src="js/site.js?v=14" defer></script>
+<script src="js/checkout.js?v=5" defer></script>
+<script src="js/site.js?v=15" defer></script>
 </body>
 </html>

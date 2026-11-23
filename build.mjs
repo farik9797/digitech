@@ -31,7 +31,7 @@ for (const file of readdirSync(join(root, 'src')).filter((f) => f.endsWith('.htm
   const src = readFileSync(join(root, 'src', file), 'utf8');
   const out = src
     .replace(/<!-- @include ([a-z-]+)(?: current="([a-z-]+)")? -->\n?/g, (_, n, c) => include(n, c))
-    .replace(/<i data-icon="([a-z-]+)"(?: class="([^"]*)")?><\/i>/g, (_, n, c) => icon(n, c));
+    .replace(/<i data-icon="([a-z0-9-]+)"(?: class="([^"]*)")?><\/i>/g, (_, n, c) => icon(n, c));
   writeFileSync(join(root, file), out);
   console.log('built', file);
 }

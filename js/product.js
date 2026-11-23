@@ -1,5 +1,6 @@
 // DIGITECH, страница товара: product.html?m=<slug> (в WordPress — /product/<slug>/, single-product.php).
-// Подставляет товар из js/products-data.js, считает количество, собирает 4 похожих товара.
+// Подставляет товар из js/products-data.js, считает количество, собирает сопутствующие (вкладка) и похожие товары.
+// Вкладки переключает site.js: здесь только прячем пустые (нет описания, нет сопутствующих).
 // Подключается до site.js: site.js потом навешивает корзину и окна на готовые кнопки.
 (() => {
   const page = document.querySelector('[data-product-page]');
@@ -135,16 +136,13 @@
   const noTable = $('[data-p-notable]');
   noTable.hidden = !!p.table.length;
   $('[data-p-specask]').dataset.topic = `Характеристики: ${full(p)}`;
-  const text = $('[data-p-text]');
-  text.textContent = p.text;
-  text.hidden = !p.text;
+  $('[data-p-text]').textContent = p.text;
+  $$('[data-p-desc]').forEach((el) => { el.hidden = !p.text; });
 
-  // ---- Похожие: тот же раздел, потом родственные, потом остальные; 4 штуки
-  const rank = (x) => (x.cat === p.cat ? 0 : (NEAR[p.cat] || []).includes(x.cat) ? 1 + NEAR[p.cat].indexOf(x.cat) : 9);
-  const related = data.filter((x) => x.slug !== p.slug).sort((a, b) => rank(a) - rank(b)).slice(0, 4);
-  const list = $('[data-p-list]');
+  // ---- Карточки: сопутствующие — из родственных разделов (камере — сеть и ИБП), похожие — из того же раздела; по 4.
+  // Родственные разделы как на текущем сайте (categoryAffinity). В WordPress сопутствующие можно задать вручную у товара.
   const tpl = $('#tpl-card');
-  related.forEach((x) => {
+  const card = (x) => {
     const li = tpl.content.firstElementChild.cloneNode(true);
     const img = $('img', li);
     if (x.img[0]) { img.src = x.img[0]; img.alt = full(x); $('.product__noimg', li).remove(); } else { img.remove(); $('.product__noimg', li).hidden = false; }
@@ -159,12 +157,15 @@
     const [cartBtn, askBtn] = $$('.product__foot .btn', li);
     if (x.price > 0) { pr.textContent = money(x.price); cartBtn.dataset.add = x.id; askBtn.remove(); }
     else { pr.textContent = 'Цена по запросу'; pr.classList.add('product__price--ask'); cartBtn.remove(); askBtn.hidden = false; askBtn.dataset.topic = `Цена: ${full(x)}`; }
-    list.append(li);
-  });
-  const sameCat = related.some((x) => x.cat === p.cat);
-  $('#pp-related-title').textContent = sameCat ? 'Похожие товары' : 'Смотрите также';
-  const catLink = $('[data-p-catlink]');
-  catLink.href = `catalog.html?cat=${p.cat}`;
-  catLink.hidden = !sameCat;
-  $('[data-p-related]').hidden = !related.length;
+    return li;
+  };
+  const near = NEAR[p.cat] || [];
+  const acc = data.filter((x) => near.includes(x.cat)).sort((a, b) => near.indexOf(a.cat) - near.indexOf(b.cat)).slice(0, 4);
+  $('[data-p-acclist]').replaceChildren(...acc.map(card));
+  $$('[data-p-acc]').forEach((el) => { el.hidden = !acc.length; });
+
+  const similar = data.filter((x) => x.slug !== p.slug && x.cat === p.cat).slice(0, 4);
+  $('[data-p-list]').replaceChildren(...similar.map(card));
+  $('[data-p-catlink]').href = `catalog.html?cat=${p.cat}`;
+  $('[data-p-related]').hidden = !similar.length;
 })();

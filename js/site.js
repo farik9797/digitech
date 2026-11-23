@@ -112,6 +112,35 @@
   if (tabs) $$('button', tabs).forEach((b) => b.addEventListener('click', () => filter(b.dataset.filter)));
   $$('[data-tab-link]').forEach((a) => a.addEventListener('click', () => filter(a.dataset.tabLink)));
 
+  // ---- Вкладки страницы товара: без JS видны все блоки подряд с заголовками, с JS — по одному.
+  // Пустые вкладки прячет product.js (макет) или не выводит шаблон (WordPress).
+  $$('[data-tabset]').forEach((set) => {
+    const list = $('[role="tablist"]', set);
+    const all = $$('[role="tab"]', list).filter((t) => !t.hidden);
+    if (!all.length) return;
+    const select = (tab, focus) => {
+      all.forEach((t) => {
+        const on = t === tab;
+        t.setAttribute('aria-selected', String(on));
+        t.tabIndex = on ? 0 : -1;
+        document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+      });
+      if (focus) tab.focus();
+    };
+    all.forEach((t, i) => {
+      t.addEventListener('click', () => select(t));
+      t.addEventListener('keydown', (e) => {
+        const to = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: all.length - 1 }[e.key];
+        if (to === undefined) return;
+        e.preventDefault();
+        select(all[(to + all.length) % all.length], true);
+      });
+    });
+    set.classList.add('is-tabs');
+    list.hidden = false;
+    select(all[0]);
+  });
+
   // ---- Корзина: js/cart.js (подключается раньше этого файла)
 
   // ---- Окна: заявка и калькуляторы; тема заявки обновляется, пока её не правили руками

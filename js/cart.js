@@ -1,5 +1,5 @@
 // DIGITECH, корзина макета. Хранится в localStorage 'dt-cart' как { id товара: количество } и переживает перезагрузку.
-// В WordPress это сессия WooCommerce: добавление по AJAX, счётчик в шапке, выдвижная панель и страница /cart/ (ТЗ, раздел 5).
+// В WordPress это сессия WooCommerce: добавление по AJAX, счётчик в шапке, окно корзины с формой заявки и страница /cart/ (ТЗ, раздел 5).
 // Подключается на всех страницах после js/products-data.js и до site.js.
 (() => {
   const data = window.DT_PRODUCTS || [];
@@ -89,7 +89,7 @@
     });
   }
 
-  // ---- Панель корзины
+  // ---- Окно корзины (по центру, с формой заявки — её обслуживает checkout.js)
   const drawer = $('#cart-drawer');
   const page = document.body.dataset.page;
   const openDrawer = () => {
@@ -103,7 +103,7 @@
     openDrawer();
   }));
 
-  // ---- Кнопки «В корзину»: первый клик кладёт товар, повторный («В корзине») открывает панель
+  // ---- Кнопки «В корзину»: первый клик кладёт товар, повторный («В корзине») открывает окно корзины
   document.addEventListener('click', (e) => {
     const add = e.target.closest('[data-add]');
     if (add) {
