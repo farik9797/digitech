@@ -133,7 +133,8 @@
 
   // ---- Калькуляторы: js/calc.js
 
-  // ---- Форма заявки: адреса отправки нет, успех не показываем
+  // ---- Форма заявки (окно консультации). В макете адреса отправки нет — успех не показываем.
+  // В WordPress адрес — digitech/v1/request: ответ несёт номер обращения или текст отказа (лимит, устаревшая страница)
   $$('form[data-endpoint]').forEach((form) => {
     const help = $('[aria-live]', form);
     form.addEventListener('submit', (e) => {
@@ -150,9 +151,17 @@
         return;
       }
       if (!form.dataset.endpoint) { help.textContent = 'Ничего не отправлено: форма пока не подключена.'; return; }
-      fetch(form.dataset.endpoint, { method: 'POST', body: new FormData(form) })
-        .then((r) => { help.textContent = r.ok ? 'Заявка принята, инженер перезвонит в рабочее время.' : 'Заявка не ушла. Попробуйте ещё раз через минуту.'; })
-        .catch(() => { help.textContent = 'Заявка не ушла. Попробуйте ещё раз через минуту.'; });
+      const send = $('[type="submit"]', form);
+      send.disabled = true;
+      fetch(form.dataset.endpoint, { method: 'POST', credentials: 'same-origin', body: new FormData(form) })
+        .then(async (r) => {
+          const data = await r.json().catch(() => ({}));
+          if (!r.ok) { help.textContent = data.error || 'Заявка не ушла. Попробуйте ещё раз через минуту.'; return; }
+          help.textContent = `Заявка${data.number ? ` ${data.number}` : ''} принята, инженер перезвонит в рабочее время.`;
+          $$('input:not([type="hidden"]), textarea', form).forEach((f) => { if (f.type === 'checkbox') f.checked = false; else f.value = ''; });
+        })
+        .catch(() => { help.textContent = 'Заявка не ушла. Попробуйте ещё раз через минуту.'; })
+        .finally(() => { send.disabled = false; });
     });
   });
 

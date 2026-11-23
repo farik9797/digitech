@@ -55,7 +55,7 @@
           <p class="eyebrow eyebrow--light">Бесперебойное питание</p>
           <p class="slide__title">ИБП для серверных и видеонаблюдения</p>
           <p class="slide__lead">Посчитаем, сколько система проработает от аккумуляторов, и подберём ИБП под вашу нагрузку.</p>
-          <button class="btn btn--lime" type="button" data-open-dialog="dlg-ups">Рассчитать время работы<i data-icon="arrow-right"></i></button>
+          <a class="btn btn--lime" href="calc-ups.html">Рассчитать время работы<i data-icon="arrow-right"></i></a>
         </div>
       </div>
       <div class="hero__controls">
@@ -203,7 +203,7 @@
         <div class="calc-card__text">
           <h3>Архив записей</h3>
           <p>Сколько дней хранит регистратор при вашем числе камер и дисков.</p>
-          <button class="link" type="button" data-open-dialog="dlg-arc">Рассчитать<i data-icon="arrow-right"></i></button>
+          <a class="link" href="calc-archive.html">Рассчитать<i data-icon="arrow-right"></i></a>
         </div>
         <img src="img/p-nvr.webp" width="800" height="600" alt="" loading="lazy">
       </article>
@@ -212,7 +212,7 @@
         <div class="calc-card__text">
           <h3>Время работы ИБП</h3>
           <p>Сколько система проработает от аккумуляторов при вашей нагрузке.</p>
-          <button class="link" type="button" data-open-dialog="dlg-ups">Рассчитать<i data-icon="arrow-right"></i></button>
+          <a class="link" href="calc-ups.html">Рассчитать<i data-icon="arrow-right"></i></a>
         </div>
         <img src="img/p-ups-tower.webp" width="800" height="600" alt="" loading="lazy">
       </article>
@@ -273,46 +273,10 @@
 </main>
 
 <!-- @include footer -->
-
-<dialog id="dlg-ups" aria-labelledby="dlg-ups-title">
-  <div class="dlg">
-    <div class="dlg__head"><h2 id="dlg-ups-title">Время работы ИБП от аккумуляторов</h2><button class="round dlg__close" type="button" aria-label="Закрыть" data-close><i data-icon="x"></i></button></div>
-    <form class="fields" data-calc="ups">
-      <label class="field"><span>Мощность нагрузки, Вт</span><input name="power" type="number" inputmode="numeric" min="1" value="500"></label>
-      <label class="field"><span>Ёмкость аккумуляторов, А·ч</span><input name="ah" type="number" inputmode="decimal" min="0" value="54"></label>
-      <label class="field"><span>Напряжение АКБ, В</span><input name="voltage" type="number" inputmode="numeric" min="1" value="12"></label>
-      <label class="field"><span>КПД инвертора</span><select name="eff"><option value="0.6">0,6</option><option value="0.7">0,7</option><option value="0.8">0,8</option><option value="0.9">0,9</option><option value="0.95" selected>0,95</option><option value="1">1</option></select></label>
-      <label class="field"><span>Остаток заряда при отключении, %</span><input name="depth" type="number" inputmode="numeric" min="0" max="90" value="5"><small>При этом остатке защита ИБП отключает аккумулятор</small></label>
-      <label class="field"><span>Износ АКБ, %</span><input name="wear" type="number" inputmode="numeric" min="0" max="90" value="5"><small>0 для нового аккумулятора</small></label>
-    </form>
-    <div class="result"><span>Ориентировочное время работы</span><output data-out="ups">≈ 35 мин</output><small>Расчёт не заменяет замер нагрузки на объекте.</small></div>
-    <button class="btn btn--blue" type="button" data-open-dialog="dlg-consult" data-topic="Подбор ИБП по расчёту" data-calc-ask>Подобрать ИБП с инженером</button>
-    <a class="link dlg__more" href="calc-ups.html">Как считаем и подсказки к полям<i data-icon="arrow-right"></i></a>
-  </div>
-</dialog>
-
-<dialog id="dlg-arc" aria-labelledby="dlg-arc-title">
-  <div class="dlg">
-    <div class="dlg__head"><h2 id="dlg-arc-title">Сколько дней хранится архив</h2><button class="round dlg__close" type="button" aria-label="Закрыть" data-close><i data-icon="x"></i></button></div>
-    <form class="fields" data-calc="arc">
-      <label class="field"><span>Количество камер</span><input name="cams" type="number" inputmode="numeric" min="1" value="8"></label>
-      <label class="field"><span>Разрешение</span><select name="res"><option value="12">12 Мп (4000×3000)</option><option value="8.84736">4K / 8 Мп (4096×2160)</option><option value="8.2944">8 Мп (3840×2160)</option><option value="6.291456">6 Мп (3072×2048)</option><option value="4.9152">5 Мп (2560×1920)</option><option value="4.194304">4 Мп (2048×2048)</option><option value="3.6864">4 Мп (2560×1440)</option><option value="3.145728">3 Мп (2048×1536)</option><option value="2.359296">2,4 Мп (1536×1536)</option><option value="2.0736" selected>2 Мп (1920×1080)</option></select></label>
-      <label class="field"><span>Кадров в секунду</span><select name="fps"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>9</option><option>10</option><option>12</option><option>15</option><option>16</option><option>18</option><option>20</option><option>22</option><option selected>25</option><option>50</option></select></label>
-      <label class="field"><span>Кодек</span><select name="codec"><option value="1" selected>H.264</option><option value="0.5">H.265</option><option value="0.45">H.265+</option></select></label>
-      <label class="field"><span>Запись, часов в сутки</span><input name="hours" type="number" inputmode="numeric" min="1" max="24" value="24"></label>
-      <label class="field"><span>Объём дисков, ТБ</span><select name="hdd"><option>1</option><option>2</option><option selected>4</option><option>6</option><option>8</option><option>10</option><option>12</option><option>16</option></select></label>
-    </form>
-    <div class="result"><span>Глубина архива</span><output data-out="arc">≈ 11 дней</output><small data-out="bitrate">Битрейт 4096 Кбит/с на камеру</small></div>
-    <button class="btn btn--blue" type="button" data-open-dialog="dlg-consult" data-topic="Подбор регистратора и дисков по расчёту" data-calc-ask>Подобрать регистратор с инженером</button>
-    <a class="link dlg__more" href="calc-archive.html">Как считаем и подсказки к полям<i data-icon="arrow-right"></i></a>
-  </div>
-</dialog>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script src="js/products-data.js?v=1" defer></script>
 <script src="js/cart.js?v=1" defer></script>
-<script src="js/calc.js?v=1" defer></script>
-<script src="js/site.js?v=13" defer></script>
+<script src="js/site.js?v=14" defer></script>
 </body>
 </html>

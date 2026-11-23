@@ -488,9 +488,10 @@ dialog::backdrop { background: rgba(7, 16, 41, 0.6); }
 .toolbar__filters .badge { position: static; }
 .active-filters { display: flex; flex: 1 1 100%; flex-wrap: wrap; order: 3; gap: 8px; min-width: 0; list-style: none; }
 .active-filters:empty { display: none; }
-.active-filters button { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 10px 0 14px; border: 1px solid var(--blue-100); border-radius: 999px; background: var(--blue-50); color: var(--blue); font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; transition: background-color 0.2s var(--ease), color 0.2s var(--ease); }
-.active-filters button:hover { background: var(--blue); color: var(--white); }
+.active-filters button, .active-filters a { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 10px 0 14px; border: 1px solid var(--blue-100); border-radius: 999px; background: var(--blue-50); color: var(--blue); font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; transition: background-color 0.2s var(--ease), color 0.2s var(--ease); }
+.active-filters button:hover, .active-filters a:hover { background: var(--blue); color: var(--white); }
 .active-filters .icon { width: 16px; height: 16px; }
+.active-filters a { text-decoration: none; }
 .active-filters .active-filters__reset { border-color: transparent; background: none; color: var(--ink-2); }
 .active-filters .active-filters__reset:hover { background: var(--bg); color: var(--blue); }
 .sort { display: flex; align-items: center; gap: 10px; margin-left: auto; font-size: 14px; color: var(--muted); }
