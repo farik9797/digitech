@@ -138,7 +138,44 @@
     });
     set.classList.add('is-tabs');
     list.hidden = false;
-    select(all[0]);
+    // #reviews в адресе (возврат после отправки отзыва) открывает свою вкладку
+    const fromHash = all.find((t) => `#${t.getAttribute('aria-controls')}` === location.hash);
+    select(fromHash || all[0]);
+    if (fromHash) document.getElementById(fromHash.getAttribute('aria-controls')).scrollIntoView({ block: 'start' });
+  });
+
+  // ---- Форма отзыва (вкладка «Отзывы»). В WordPress уходит обычной отправкой в wp-comments-post.php
+  // и ждёт проверки в админке; в макете (data-mock) никуда не уходит.
+  $$('form[data-review]').forEach((form) => {
+    const f = form.elements;
+    const help = $('[data-review-help]', form);
+    const checks = [
+      [$('input[name="rating"]', form), 'rv-rating-err', () => (f.rating.value ? '' : 'Поставьте оценку: от 1 до 5 звёзд')],
+      [f.author, 'rv-name-err', () => (f.author.value.trim() ? '' : 'Напишите имя: оно будет видно над отзывом')],
+      [f.email, 'rv-email-err', () => (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email.value.trim()) ? '' : 'Нужен e-mail вида name@mail.uz')],
+      [f.comment, 'rv-text-err', () => (f.comment.value.trim().length >= 10 ? '' : 'Напишите хотя бы пару предложений о товаре')],
+      [f.dt_consent, 'rv-consent-err', () => (f.dt_consent.checked ? '' : 'Без согласия мы не сможем принять отзыв')],
+    ];
+    const show = ([input, id, rule]) => {
+      const msg = rule();
+      input.setAttribute('aria-invalid', String(Boolean(msg)));
+      document.getElementById(id).textContent = msg;
+      return msg;
+    };
+    // ошибка снимается во время ввода, чтобы форма не прыгала в момент клика по следующему полю
+    form.addEventListener('input', (e) => {
+      const c = checks.find(([input]) => input.name === e.target.name);
+      if (c && c[0].getAttribute('aria-invalid') === 'true') show(c);
+    });
+    form.addEventListener('submit', (e) => {
+      if (f.dt_website.value) { e.preventDefault(); return; } // ловушка для ботов
+      const bad = checks.filter((c) => show(c));
+      if (bad.length) { e.preventDefault(); help.textContent = 'Проверьте отмеченные поля.'; bad[0][0].focus(); return; }
+      if ('mock' in form.dataset) {
+        e.preventDefault();
+        help.textContent = 'Образец: в макете отзыв никуда не уходит. На сайте он попадёт на проверку в админку.';
+      }
+    });
   });
 
   // ---- Корзина: js/cart.js (подключается раньше этого файла)
