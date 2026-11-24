@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=26">
+<link rel="stylesheet" href="css/style.css?v=29">
 <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -79,6 +79,11 @@
       <div class="ptabs__panel" role="tabpanel" id="desc" aria-labelledby="tab-desc" tabindex="0" data-p-desc>
         <h2 class="ptabs__title">Описание</h2>
         <p class="pp-desc" data-p-text>Распашной турникет серии ELT 811 рассчитан на интенсивный поток людей. Монтаж и настройку делает технический отдел DIGITECH.</p>
+        <!-- Описание в PDF (просьба клиента). В WordPress кнопка появляется, когда менеджер загрузил файл в карточку товара. -->
+        <div class="pp-pdf">
+          <a class="btn btn--line btn--sm" href="#" data-mock-pdf><i data-icon="file-down"></i>Скачать описание (PDF)</a>
+          <small class="done__mock">Образец: в макете файла нет. На сайте менеджер загружает PDF в карточке товара.</small>
+        </div>
       </div>
       <div class="ptabs__panel" role="tabpanel" id="specs" aria-labelledby="tab-specs" tabindex="0">
         <h2 class="ptabs__title">Характеристики</h2>
@@ -205,9 +210,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script src="js/products-data.js?v=1" defer></script>
-<script src="js/product.js?v=5" defer></script>
+<script src="js/product.js?v=6" defer></script>
 <script src="js/cart.js?v=1" defer></script>
 <script src="js/checkout.js?v=5" defer></script>
-<script src="js/site.js?v=17" defer></script>
+<script src="js/site.js?v=19" defer></script>
 </body>
 </html>

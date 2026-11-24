@@ -136,8 +136,10 @@
   const noTable = $('[data-p-notable]');
   noTable.hidden = !!p.table.length;
   $('[data-p-specask]').dataset.topic = `Характеристики: ${full(p)}`;
+  // вкладка «Описание» есть всегда: в ней ещё кнопка «Скачать описание (PDF)» (в макете — образец)
   $('[data-p-text]').textContent = p.text;
-  $$('[data-p-desc]').forEach((el) => { el.hidden = !p.text; });
+  $('[data-p-text]').hidden = !p.text;
+  $('[data-mock-pdf]').addEventListener('click', (e) => e.preventDefault());
 
   // ---- Карточки: сопутствующие — из родственных разделов (камере — сеть и ИБП), похожие — из того же раздела; по 4.
   // Родственные разделы как на текущем сайте (categoryAffinity). В WordPress сопутствующие можно задать вручную у товара.

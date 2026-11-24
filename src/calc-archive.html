@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=26">
+<link rel="stylesheet" href="css/style.css?v=29">
 <script>document.documentElement.classList.add('js');</script>
 </head>
 <body data-page="calc">
@@ -50,15 +50,6 @@
       </aside>
     </div>
 
-    <section class="calc-how" aria-labelledby="how-title">
-      <h2 class="h2" id="how-title">Как считаем</h2>
-      <ol class="steps">
-        <li><span class="steps__n" aria-hidden="true">1</span><h3>Битрейт камеры</h3><p>За основу берём 4 096 Кбит/с: камера 2 Мп, 25 кадров в секунду, H.264. Значение растёт пропорционально пикселям и частоте кадров.</p></li>
-        <li><span class="steps__n" aria-hidden="true">2</span><h3>Поправка на кодек</h3><p>H.265 считаем как половину потока H.264, H.265+ как 45 %. Так 4 Мп на H.265 пишет примерно столько же, сколько 2 Мп на H.264.</p></li>
-        <li><span class="steps__n" aria-hidden="true">3</span><h3>Дни архива</h3><p>Объём дисков делим на суточный поток всех камер с учётом часов записи и округляем вниз. Пример по умолчанию: 8 камер на 4 ТБ хватает на 11 дней.</p></li>
-      </ol>
-      <p class="calc-note">Реальный битрейт зависит от сцены: ночью и при движении в кадре поток выше, и архив короче расчётного.</p>
-    </section>
 
     <section class="calc-other" aria-label="Другой расчёт">
       <article class="calc-card">
@@ -81,6 +72,6 @@
 <script src="js/cart.js?v=1" defer></script>
 <script src="js/checkout.js?v=5" defer></script>
 <script src="js/calc.js?v=1" defer></script>
-<script src="js/site.js?v=17" defer></script>
+<script src="js/site.js?v=19" defer></script>
 </body>
 </html>

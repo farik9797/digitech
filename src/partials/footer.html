@@ -23,7 +23,8 @@
           <li><a href="services.html">Услуги</a></li>
           <li><a href="calc-ups.html">Расчёт ИБП</a></li>
           <li><a href="calc-archive.html">Расчёт архива</a></li>
-          <li><a href="./#about">О компании</a></li>
+          <li><a href="about.html">О компании</a></li>
+          <li><a href="news.html">Новости</a></li>
           <li><a href="./#strip">Доставка и оплата</a></li>
           <li><a href="./#features">Гарантия</a></li>
         </ul>
@@ -49,9 +50,19 @@
 <dialog id="dlg-consult" aria-labelledby="dlg-consult-title">
   <form class="dlg" data-endpoint="" novalidate>
     <div class="dlg__head"><h2 id="dlg-consult-title">Заявка на консультацию</h2><button class="round dlg__close" type="button" aria-label="Закрыть" data-close><i data-icon="x"></i></button></div>
+    <!-- Поля по просьбе клиента: кто обращается (организация или физ. лицо), имя и фамилия, e-mail необязательно -->
     <div class="fields">
-      <label class="field"><span>Имя</span><input name="name" type="text" autocomplete="name" required aria-describedby="consult-help"></label>
+      <fieldset class="field field--wide seg">
+        <legend>Кто обращается</legend>
+        <div class="seg__opts">
+          <label><input type="radio" name="client_type" value="org" checked data-client-type><span>Организация</span></label>
+          <label><input type="radio" name="client_type" value="person" data-client-type><span>Физ. лицо</span></label>
+        </div>
+      </fieldset>
+      <label class="field field--wide" data-org-field><span>Название организации</span><input name="organization" type="text" maxlength="160" autocomplete="organization" required aria-describedby="consult-help"></label>
+      <label class="field"><span>Имя и фамилия</span><input name="name" type="text" maxlength="100" autocomplete="name" required aria-describedby="consult-help"></label>
       <label class="field"><span>Телефон</span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+998" required aria-describedby="consult-help"></label>
+      <label class="field field--wide"><span>E-mail <small>необязательно</small></span><input name="email" type="email" maxlength="100" autocomplete="email" aria-describedby="consult-help"></label>
       <label class="field field--wide"><span>Задача</span><textarea name="task" rows="4" data-topic-field></textarea></label>
     </div>
     <label class="check"><input name="consent" type="checkbox" required aria-describedby="consult-help"> <span>Согласен на обработку персональных данных по <a href="privacy.html">политике конфиденциальности</a></span></label>

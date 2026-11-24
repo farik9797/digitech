@@ -17,6 +17,14 @@
     barrier: { title: 'Шлагбаумы и болларды', crumb: 'Шлагбаумы и болларды' },
     vent: { title: 'Вентиляция', crumb: 'Вентиляция' },
   };
+  // Подразделы (просьба клиента). В WordPress это дочерние рубрики товаров.
+  const SUBS = {
+    video: [['kamery', 'Камеры'], ['registratory', 'Регистраторы'], ['monitory', 'Мониторы'],
+      ['kamery-opredeleniya-lic', 'Камеры определения лиц'], ['kamery-opredeleniya-mashin', 'Камеры определения машин'],
+      ['videodomofony', 'Видеодомофоны'], ['videostena', 'Видеостена'], ['terminaly-face-id', 'Терминал доступа FACE ID']],
+    ups: [['interaktivnye', 'Интерактивные'], ['onlajn', 'Онлайн']],
+  };
+  const subTitle = (cat, sub) => ((SUBS[cat] || []).find(([slug]) => slug === sub) || [])[1] || '';
   const BRANDS = { hikvision: 'Hikvision', dahua: 'Dahua', 'tp-link': 'TP-Link', panasonic: 'Panasonic', marsriva: 'MarsRiva', 'hol-top': 'HOL-TOP', none: 'Без бренда' };
   const STOCK = { in: 'В наличии', order: 'Под поставку', request: 'По запросу', out: 'Нет в наличии' };
   // Синонимы поиска из ТЗ (раздел 9)
@@ -40,8 +48,10 @@
   const read = () => {
     const u = new URLSearchParams(location.search);
     const cat = u.get('cat') || '';
+    const sub = u.get('sub') || '';
     return {
       cat: CATS[cat] ? cat : '',
+      sub: subTitle(cat, sub) ? sub : '',
       brand: u.getAll('brand').filter(Boolean),
       stock: u.getAll('stock').filter((s) => STOCK[s]),
       q: (u.get('q') || '').trim(),
@@ -53,6 +63,7 @@
   const url = (s) => {
     const u = new URLSearchParams();
     if (s.cat) u.set('cat', s.cat);
+    if (s.sub) u.set('sub', s.sub);
     s.brand.forEach((b) => u.append('brand', b));
     s.stock.forEach((v) => u.append('stock', v));
     if (s.q) u.set('q', s.q);
@@ -72,6 +83,7 @@
   // ---- Отбор: skip — какой фильтр не учитывать (для счётчиков у вариантов этого же фильтра)
   const match = (el, s, skip) => {
     if (skip !== 'cat' && s.cat && el.dataset.cat !== s.cat) return false;
+    if (skip !== 'cat' && skip !== 'sub' && s.sub && el.dataset.sub !== s.sub) return false;
     if (skip !== 'brand' && s.brand.length && !s.brand.includes(el.dataset.brand)) return false;
     if (skip !== 'stock' && s.stock.length && !s.stock.includes(el.dataset.stock)) return false;
     if (s.q) {
@@ -106,20 +118,52 @@
   const render = () => {
     const s = state;
     const meta = CATS[s.cat];
+    const sub = subTitle(s.cat, s.sub);
+    const title = sub || meta.title;
 
     // заголовок, крошки, <title>
-    $('[data-cat-title]').textContent = meta.title;
-    document.title = s.cat ? `${meta.title} — купить в Ташкенте | DIGITECH` : 'Каталог оборудования для систем безопасности — DIGITECH';
+    $('[data-cat-title]').textContent = title;
+    document.title = s.cat ? `${title} — купить в Ташкенте | DIGITECH` : 'Каталог оборудования для систем безопасности — DIGITECH';
     const root = $('[data-crumb-root]');
     const crumb = $('[data-crumb-cat]');
     root.replaceChildren();
     if (s.cat) {
       const a = document.createElement('a'); a.href = 'catalog.html'; a.textContent = 'Каталог'; root.append(a);
-      crumb.hidden = false; $('span', crumb).textContent = meta.crumb;
+      crumb.hidden = false;
+      crumb.replaceChildren();
+      if (sub) {
+        const a = document.createElement('a'); a.href = `catalog.html?cat=${s.cat}`; a.textContent = meta.crumb; a.dataset.crumbCatLink = '';
+        crumb.append(a);
+      } else {
+        const span = document.createElement('span'); span.setAttribute('aria-current', 'page'); span.textContent = meta.crumb; crumb.append(span);
+      }
     } else {
       const span = document.createElement('span'); span.setAttribute('aria-current', 'page'); span.textContent = 'Каталог'; root.append(span);
       crumb.hidden = true;
     }
+    const crumbSub = $('[data-crumb-sub]');
+    crumbSub.hidden = !sub;
+    $('span', crumbSub).textContent = sub;
+
+    // подразделы выбранного раздела: «Все» и каждый подраздел со счётчиком
+    const subNav = $('[data-subcats]');
+    const subs = SUBS[s.cat] || [];
+    subNav.hidden = !subs.length;
+    $('ul', subNav).replaceChildren(...[['', 'Все']].concat(subs).map(([slug, name]) => {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = `catalog.html?cat=${s.cat}${slug ? `&sub=${slug}` : ''}`;
+      const n = items.filter((el) => match(el, { ...s, sub: slug })).length;
+      a.append(name, Object.assign(document.createElement('span'), { textContent: String(n) }));
+      if (slug === s.sub) a.setAttribute('aria-current', 'page');
+      a.addEventListener('click', (e) => {
+        if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+        e.preventDefault();
+        go({ sub: slug });
+      });
+      li.append(a);
+      return li;
+    }));
 
     // разделы и счётчики
     $$('[data-cat-link]').forEach((a) => {
@@ -137,6 +181,7 @@
       input.disabled = n === 0 && !input.checked;
     });
     $('[data-cat-input]', form).value = s.cat;
+    $('[data-sub-input]', form).value = s.sub;
     sortSel.value = s.sort;
     if (headerSearch && document.activeElement !== headerSearch) headerSearch.value = s.q;
 
@@ -173,7 +218,7 @@
       $('[data-empty-text]').textContent = bare
         ? 'Модели ещё не выложены. Напишите задачу, инженер подберёт оборудование и пришлёт расчёт.'
         : 'Уберите часть фильтров или напишите, что нужно: инженер подберёт модель под объект.';
-      $('[data-empty-help]').dataset.topic = `Помочь с подбором${s.q ? `: ${s.q}` : s.cat ? `: ${meta.crumb}` : ''}`;
+      $('[data-empty-help]').dataset.topic = `Помочь с подбором${s.q ? `: ${s.q}` : s.cat ? `: ${sub || meta.crumb}` : ''}`;
       $$('[data-reset]', empty).forEach((a) => { a.hidden = bare; });
     }
 
@@ -207,14 +252,15 @@
   $$('[data-cat-link]').forEach((a) => a.addEventListener('click', (e) => {
     if (e.metaKey || e.ctrlKey || e.shiftKey) return;
     e.preventDefault();
-    go({ cat: a.dataset.catLink, brand: [], stock: [], q: '' });
+    go({ cat: a.dataset.catLink, sub: '', brand: [], stock: [], q: '' });
   }));
   $$('[data-reset]').forEach((a) => a.addEventListener('click', (e) => { e.preventDefault(); go({ brand: [], stock: [], q: '' }); }));
   $$('.crumbs').forEach((nav) => nav.addEventListener('click', (e) => {
-    const a = e.target.closest('a[href="catalog.html"]');
+    const a = e.target.closest('a[href="catalog.html"], a[data-crumb-cat-link]');
     if (!a) return;
     e.preventDefault();
-    go({ cat: '', brand: [], stock: [], q: '' });
+    if ('crumbCatLink' in a.dataset) go({ sub: '' });
+    else go({ cat: '', sub: '', brand: [], stock: [], q: '' });
   }));
 
   // ---- Шторка фильтров (до 960 px)

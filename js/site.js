@@ -199,6 +199,15 @@
 
   // ---- Калькуляторы: js/calc.js
 
+  // ---- Окно консультации: «Организация» показывает обязательное поле названия, «Физ. лицо» прячет его
+  $$('[data-client-type]').forEach((radio) => radio.addEventListener('change', () => {
+    const field = $('[data-org-field]', radio.form);
+    const org = radio.form.elements.client_type.value === 'org';
+    field.hidden = !org;
+    $('input', field).required = org;
+    if (!org) $('input', field).removeAttribute('aria-invalid');
+  }));
+
   // ---- Форма заявки (окно консультации). В макете адреса отправки нет — успех не показываем.
   // В WordPress адрес — digitech/v1/request: ответ несёт номер обращения или текст отказа (лимит, устаревшая страница)
   $$('form[data-endpoint]').forEach((form) => {
@@ -207,12 +216,19 @@
       e.preventDefault();
       const fields = $$('[required]', form);
       const okPhone = (v) => /^\+?[\d\s()-]{9,}$/.test(v.trim());
-      const bad = fields.find((f) => (f.type === 'checkbox' ? !f.checked : f.type === 'tel' ? !okPhone(f.value) : !f.value.trim()));
-      fields.forEach((f) => f.setAttribute('aria-invalid', String(f === bad)));
+      const okEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
+      // необязательный e-mail проверяем, только если его ввели
+      const email = form.elements.email && form.elements.email.value.trim() ? [form.elements.email] : [];
+      const bad = fields.concat(email).find((f) => (f.type === 'checkbox' ? !f.checked : f.type === 'tel' ? !okPhone(f.value) : f.type === 'email' ? !okEmail(f.value) : !f.value.trim()));
+      // сначала снимаем прошлые отметки со всех полей (в том числе с e-mail, который потом стёрли)
+      $$('[aria-invalid]', form).forEach((f) => f.removeAttribute('aria-invalid'));
+      if (bad) bad.setAttribute('aria-invalid', 'true');
       if (bad) {
         help.textContent = bad.type === 'checkbox' ? 'Отметьте согласие на обработку контактных данных.'
           : bad.type === 'tel' ? 'Проверьте телефон: нужен номер вида +998 90 123 45 67.'
-          : 'Укажите имя, чтобы инженер знал, как к вам обращаться.';
+          : bad.type === 'email' ? 'Проверьте e-mail: нужен адрес вида name@mail.uz. Или оставьте поле пустым.'
+          : bad.name === 'organization' ? 'Укажите название организации или выберите «Физ. лицо».'
+          : 'Укажите имя и фамилию, чтобы инженер знал, как к вам обращаться.';
         bad.focus();
         return;
       }
@@ -224,7 +240,8 @@
           const data = await r.json().catch(() => ({}));
           if (!r.ok) { help.textContent = data.error || 'Заявка не ушла. Попробуйте ещё раз через минуту.'; return; }
           help.textContent = `Заявка${data.number ? ` ${data.number}` : ''} принята, инженер перезвонит в рабочее время.`;
-          $$('input:not([type="hidden"]), textarea', form).forEach((f) => { if (f.type === 'checkbox') f.checked = false; else f.value = ''; });
+          // переключатели (radio) не трогаем: у них value — это вариант, а не ввод
+          $$('input:not([type="hidden"]):not([type="radio"]), textarea', form).forEach((f) => { if (f.type === 'checkbox') f.checked = false; else f.value = ''; });
         })
         .catch(() => { help.textContent = 'Заявка не ушла. Попробуйте ещё раз через минуту.'; })
         .finally(() => { send.disabled = false; });

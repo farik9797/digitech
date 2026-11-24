@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="only light">
+<meta name="robots" content="noindex, nofollow">
+<title>Новости DIGITECH</title>
+<meta name="description" content="Новости DIGITECH: поступления оборудования на склад в Ташкенте, график работы, полезные материалы о видеонаблюдении и ИБП.">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=29">
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body data-page="news">
+<!-- @include header current="news" -->
+
+<!-- Новости (просьба клиента). В WordPress — записи блога: страница «Новости» = home.php, новость = single.php.
+     В макете новости придуманы как образец вида, у каждой метка «Образец». -->
+<main id="main" class="news-page">
+  <div class="container">
+    <nav class="crumbs" aria-label="Хлебные крошки">
+      <ol>
+        <li><a href="./">Главная</a></li>
+        <li><span aria-current="page">Новости</span></li>
+      </ol>
+    </nav>
+
+    <div class="cat-head">
+      <h1 class="cat-head__title">Новости</h1>
+    </div>
+    <p class="done__mock news-page__mock">Образец: в макете новости придуманы, чтобы показать вид раздела. На сайте их пишет менеджер в админке, до первой новости раздел пустой.</p>
+
+    <ul class="news-grid">
+      <li class="news-card">
+        <a class="news-card__pic" href="news-item.html" tabindex="-1" aria-hidden="true"><img src="img/hero-ups-900.webp" width="900" height="502" alt="" loading="lazy"></a>
+        <div class="news-card__meta"><span class="review__tag">Образец</span><time datetime="2026-11-20">20 ноября 2026</time></div>
+        <h2 class="news-card__title"><a href="news-item.html">Как рассчитать время работы ИБП от аккумуляторов</a></h2>
+        <p>Калькулятор на сайте считает время автономной работы по мощности нагрузки и аккумуляторам.</p>
+      </li>
+      <li class="news-card">
+        <a class="news-card__pic" href="news-item.html" tabindex="-1" aria-hidden="true"><img src="img/hero-photo-900.webp" width="900" height="502" alt="" loading="lazy"></a>
+        <div class="news-card__meta"><span class="review__tag">Образец</span><time datetime="2026-11-12">12 ноября 2026</time></div>
+        <h2 class="news-card__title"><a href="news-item.html">На склад поступили IP-камеры с цветной ночной съёмкой</a></h2>
+        <p>Модели, цены и наличие смотрите в разделе «Видеонаблюдение».</p>
+      </li>
+      <li class="news-card">
+        <a class="news-card__pic" href="news-item.html" tabindex="-1" aria-hidden="true"><img src="img/about-warehouse-700.webp" width="700" height="391" alt="" loading="lazy"></a>
+        <div class="news-card__meta"><span class="review__tag">Образец</span><time datetime="2026-11-05">5 ноября 2026</time></div>
+        <h2 class="news-card__title"><a href="news-item.html">График работы склада в праздничные дни</a></h2>
+        <p>Заранее сообщаем, когда склад и офис работают по сокращённому графику.</p>
+      </li>
+    </ul>
+  </div>
+</main>
+
+<!-- @include footer -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="js/products-data.js?v=1" defer></script>
+<script src="js/cart.js?v=1" defer></script>
+<script src="js/checkout.js?v=5" defer></script>
+<script src="js/site.js?v=19" defer></script>
+</body>
+</html>

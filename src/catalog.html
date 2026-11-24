@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=26">
+<link rel="stylesheet" href="css/style.css?v=29">
 <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -24,6 +24,7 @@
         <li><a href="./">Главная</a></li>
         <li data-crumb-root><span aria-current="page">Каталог</span></li>
         <li data-crumb-cat hidden><span aria-current="page"></span></li>
+        <li data-crumb-sub hidden><span aria-current="page"></span></li>
       </ol>
     </nav>
 
@@ -45,6 +46,9 @@
       <button class="round" type="button" aria-label="Прокрутить разделы вперёд" data-scroll="1"><i data-icon="chevron-right"></i></button>
     </nav>
 
+    <!-- Подразделы (у «Видеонаблюдения» и «ИБП», просьба клиента): строку собирает catalog.js -->
+    <nav class="subcats" aria-label="Подразделы" data-subcats hidden><ul></ul></nav>
+
     <div class="cat-layout">
       <aside class="filters" id="filters" aria-labelledby="filters-title">
         <div class="filters__head">
@@ -53,6 +57,7 @@
         </div>
         <form class="filters__form" id="filters-form" action="catalog.html" method="get" data-filters>
           <input type="hidden" name="cat" value="" data-cat-input>
+          <input type="hidden" name="sub" value="" data-sub-input>
           <fieldset class="facet">
             <legend>Бренд</legend>
             <label class="opt"><input type="checkbox" name="brand" value="hikvision"><span>Hikvision</span><small data-n></small></label>
@@ -90,7 +95,7 @@
         </div>
 
         <ul class="products products--catalog" data-list>
-          <li class="product product--full" data-id="ds2cd2047" data-cat="video" data-brand="hikvision" data-stock="in" data-price="2774400" data-name="IP-камера 4 Мп ColorVu" data-search="ds-2cd2047g2-lu hikvision видеонаблюдение камера ip-камера colorvu">
+          <li class="product product--full" data-id="ds2cd2047" data-cat="video" data-sub="kamery" data-brand="hikvision" data-stock="in" data-price="2774400" data-name="IP-камера 4 Мп ColorVu" data-search="ds-2cd2047g2-lu hikvision видеонаблюдение камера ip-камера colorvu">
             <img src="img/p-camera.webp" width="800" height="600" alt="IP-камера 4 Мп ColorVu DS-2CD2047G2-LU" loading="lazy">
             <div class="product__meta"><span class="status status--ok">В наличии</span><span class="product__brand">Hikvision</span></div>
             <h3><a class="product__link" href="product.html?m=ds-2cd2047g2-lu">IP-камера 4 Мп ColorVu</a> <span class="product__model">DS-2CD2047G2-LU</span></h3>
@@ -106,7 +111,7 @@
             <p class="product__price">1 612 800 сум</p>
             <div class="product__foot"><button class="btn btn--tint btn--sm" type="button" data-add="pfs3110"><i data-icon="shopping-cart"></i><span>В корзину</span></button></div>
           </li>
-          <li class="product product--full" data-id="usk10" data-cat="ups" data-brand="marsriva" data-stock="in" data-price="0" data-name="ИБП онлайн 3 кВА" data-search="usk 10 marsriva ибп ups юпс источник бесперебойного питания онлайн">
+          <li class="product product--full" data-id="usk10" data-cat="ups" data-sub="onlajn" data-brand="marsriva" data-stock="in" data-price="0" data-name="ИБП онлайн 3 кВА" data-search="usk 10 marsriva ибп ups юпс источник бесперебойного питания онлайн">
             <img src="img/p-ups-tower.webp" width="800" height="600" alt="ИБП онлайн 3 кВА USK 10" loading="lazy">
             <div class="product__meta"><span class="status status--ok">В наличии</span><span class="product__brand">MarsRiva</span></div>
             <h3><a class="product__link" href="product.html?m=usk-10">ИБП онлайн 3 кВА</a> <span class="product__model">USK 10</span></h3>
@@ -211,9 +216,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script src="js/products-data.js?v=1" defer></script>
-<script src="js/catalog.js?v=3" defer></script>
+<script src="js/catalog.js?v=4" defer></script>
 <script src="js/cart.js?v=1" defer></script>
 <script src="js/checkout.js?v=5" defer></script>
-<script src="js/site.js?v=17" defer></script>
+<script src="js/site.js?v=19" defer></script>
 </body>
 </html>

@@ -19,12 +19,41 @@
     <div class="catalog" data-catalog>
       <button class="btn btn--blue catalog__toggle" type="button" aria-expanded="false" aria-controls="mega"><i data-icon="layout-grid"></i><span class="catalog__label">Каталог товаров</span><i data-icon="chevron-down" class="chev"></i></button>
       <div class="mega" id="mega" hidden>
-        <a href="catalog.html?cat=video"><img src="img/p-camera.webp" alt="" width="800" height="600" loading="lazy">Видеонаблюдение</a>
-        <a href="catalog.html?cat=ups"><img src="img/p-ups-tower.webp" alt="" width="800" height="600" loading="lazy">ИБП</a>
-        <a href="catalog.html?cat=net"><img src="img/p-switch.webp" alt="" width="800" height="600" loading="lazy">Сетевое оборудование</a>
-        <a href="catalog.html?cat=turn"><img src="img/p-elt811.webp" alt="" width="800" height="600" loading="lazy">Турникеты</a>
-        <a href="catalog.html?cat=barrier"><img src="img/p-bollards.webp" alt="" width="800" height="600" loading="lazy">Шлагбаумы и болларды</a>
-        <a href="catalog.html?cat=vent"><img src="img/p-recuperator.webp" alt="" width="800" height="600" loading="lazy">Вентиляция</a>
+        <div class="mega__grid">
+          <div class="mega__sec mega__sec--tall">
+            <a class="mega__head" href="catalog.html?cat=video"><img src="img/p-camera.webp" alt="" width="800" height="600" loading="lazy"><span>Видеонаблюдение</span></a>
+            <ul class="mega__subs">
+              <li><a href="catalog.html?cat=video&amp;sub=kamery">Камеры</a></li>
+              <li><a href="catalog.html?cat=video&amp;sub=registratory">Регистраторы</a></li>
+              <li><a href="catalog.html?cat=video&amp;sub=monitory">Мониторы</a></li>
+              <li><a href="catalog.html?cat=video&amp;sub=kamery-opredeleniya-lic">Камеры определения лиц</a></li>
+              <li><a href="catalog.html?cat=video&amp;sub=kamery-opredeleniya-mashin">Камеры определения машин</a></li>
+              <li><a href="catalog.html?cat=video&amp;sub=videodomofony">Видеодомофоны</a></li>
+              <li><a href="catalog.html?cat=video&amp;sub=videostena">Видеостена</a></li>
+              <li><a href="catalog.html?cat=video&amp;sub=terminaly-face-id">Терминал доступа FACE ID</a></li>
+            </ul>
+          </div>
+          <div class="mega__sec">
+            <a class="mega__head" href="catalog.html?cat=ups"><img src="img/p-ups-tower.webp" alt="" width="800" height="600" loading="lazy"><span>ИБП</span></a>
+            <ul class="mega__subs">
+              <li><a href="catalog.html?cat=ups&amp;sub=interaktivnye">Интерактивные</a></li>
+              <li><a href="catalog.html?cat=ups&amp;sub=onlajn">Онлайн</a></li>
+            </ul>
+          </div>
+          <div class="mega__sec">
+            <a class="mega__head" href="catalog.html?cat=net"><img src="img/p-switch.webp" alt="" width="800" height="600" loading="lazy"><span>Сетевое оборудование</span></a>
+          </div>
+          <div class="mega__sec">
+            <a class="mega__head" href="catalog.html?cat=turn"><img src="img/p-elt811.webp" alt="" width="800" height="600" loading="lazy"><span>Турникеты</span></a>
+          </div>
+          <div class="mega__sec">
+            <a class="mega__head" href="catalog.html?cat=barrier"><img src="img/p-bollards.webp" alt="" width="800" height="600" loading="lazy"><span>Шлагбаумы и болларды</span></a>
+          </div>
+          <div class="mega__sec">
+            <a class="mega__head" href="catalog.html?cat=vent"><img src="img/p-recuperator.webp" alt="" width="800" height="600" loading="lazy"><span>Вентиляция</span></a>
+          </div>
+          <a class="mega__all" href="catalog.html"><i data-icon="layout-grid"></i><span>Весь каталог</span><i data-icon="arrow-right"></i></a>
+        </div>
       </div>
     </div>
     <form class="search" role="search" action="catalog.html">
@@ -36,6 +65,7 @@
       <i data-icon="phone"></i>
       <div><a href="tel:+998901887880">+998 90 188 78 80</a><a class="link" href="#consult" data-open-dialog="dlg-consult" data-topic="Обратный звонок">Обратный звонок</a></div>
     </div>
+    <!-- значок корзины здесь виден только на телефоне: на компьютере корзина в конце строки меню (просьба клиента) -->
     <a class="header__cart" href="cart.html" data-cart-open><i data-icon="shopping-cart"></i><span class="visually-hidden">Корзина, товаров:</span><span class="badge" data-cart-count>0</span></a>
     <button class="round header__menu" type="button" aria-expanded="false" aria-controls="nav" aria-label="Меню" data-menu><i data-icon="menu"></i></button>
   </div>
@@ -46,8 +76,10 @@
       <li><a href="services.html" data-nav="services">Услуги</a></li>
       <li><a href="catalog.html" data-nav="catalog">Каталог</a></li>
       <li><a href="./#strip" data-nav="delivery">Доставка и оплата</a></li>
-      <li><a href="./#about" data-nav="about">О компании</a></li>
+      <li><a href="about.html" data-nav="about">О компании</a></li>
+      <li><a href="news.html" data-nav="news">Новости</a></li>
       <li><a href="#contacts" data-nav="contacts">Контакты</a></li>
+      <li class="nav__cart"><a href="cart.html" data-cart-open><i data-icon="shopping-cart"></i>Корзина<span class="nav__badge" data-cart-count>0</span></a></li>
     </ul>
   </div>
 </nav>
