@@ -497,6 +497,11 @@ dialog::backdrop { background: rgba(7, 16, 41, 0.6); }
 .active-filters .active-filters__reset:hover { background: var(--bg); color: var(--blue); }
 .sort { display: flex; align-items: center; gap: 10px; margin-left: auto; font-size: 14px; color: var(--muted); }
 .sort select { min-height: 44px; padding: 0 12px; border: 1px solid var(--line-2); border-radius: var(--r-control); background: var(--white); color: var(--ink); font: inherit; font-size: 15px; cursor: pointer; }
+/* выпадающие списки (окно корзины, калькуляторы, сортировка): своя стрелка вместо системной.
+   Стрелка — chevron-down из icons/ (Lucide 1.75.0); цвета в data-URI повторяют токены: --muted, при наведении --ink, в фокусе --blue */
+.field select, .sort select { appearance: none; -webkit-appearance: none; padding-right: 44px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235c6a80' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; background-size: 18px 18px; text-overflow: ellipsis; cursor: pointer; }
+.field select:hover, .sort select:hover { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d1b33' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); }
+.field select:focus-visible, .sort select:focus-visible { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230757dc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); }
 
 .products--catalog { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .product--full { display: flex; flex-direction: column; gap: 10px; }
