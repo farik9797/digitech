@@ -139,7 +139,17 @@
   // вкладка «Описание» есть всегда: в ней ещё кнопка «Скачать описание (PDF)» (в макете — образец)
   $('[data-p-text]').textContent = p.text;
   $('[data-p-text]').hidden = !p.text;
-  $('[data-mock-pdf]').addEventListener('click', (e) => e.preventDefault());
+  // pdf: [адрес, размер] — настоящий файл производителя; без него кнопка остаётся образцом
+  const pdfBtn = $('[data-mock-pdf]');
+  if (p.pdf) {
+    pdfBtn.href = p.pdf[0];
+    pdfBtn.setAttribute('download', '');
+    pdfBtn.removeAttribute('data-mock-pdf');
+    pdfBtn.lastChild.textContent = `Скачать описание (PDF, ${p.pdf[1]})`;
+    if (pdfBtn.nextElementSibling) pdfBtn.nextElementSibling.remove();
+  } else {
+    pdfBtn.addEventListener('click', (e) => e.preventDefault());
+  }
 
   // ---- Карточки: сопутствующие — из родственных разделов (камере — сеть и ИБП), похожие — из того же раздела; по 4.
   // Родственные разделы как на текущем сайте (categoryAffinity). В WordPress сопутствующие можно задать вручную у товара.

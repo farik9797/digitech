@@ -22,7 +22,7 @@
     video: [['kamery', 'Камеры'], ['registratory', 'Регистраторы'], ['monitory', 'Мониторы'],
       ['kamery-opredeleniya-lic', 'Камеры определения лиц'], ['kamery-opredeleniya-mashin', 'Камеры определения машин'],
       ['videodomofony', 'Видеодомофоны'], ['videostena', 'Видеостена'], ['terminaly-face-id', 'Терминал доступа FACE ID']],
-    ups: [['interaktivnye', 'Интерактивные'], ['onlajn', 'Онлайн']],
+    ups: [['interaktivnye', 'Интерактивные'], ['onlajn', 'Онлайн'], ['akkumulyatory', 'Аккумуляторы']],
   };
   const subTitle = (cat, sub) => ((SUBS[cat] || []).find(([slug]) => slug === sub) || [])[1] || '';
   const BRANDS = { hikvision: 'Hikvision', dahua: 'Dahua', 'tp-link': 'TP-Link', panasonic: 'Panasonic', marsriva: 'MarsRiva', 'hol-top': 'HOL-TOP', none: 'Без бренда' };
