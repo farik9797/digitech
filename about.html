@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=31">
+<link rel="stylesheet" href="css/style.css?v=32">
 <script>document.documentElement.classList.add('js');</script>
 </head>
 <body data-page="about">
@@ -92,6 +92,8 @@
     <ul>
       <li><a href="services.html" data-nav="services">Услуги</a></li>
       <li><a href="catalog.html" data-nav="catalog">Каталог</a></li>
+      <li><a href="calc-archive.html" data-nav="calc-archive">Расчёт архива</a></li>
+      <li><a href="calc-ups.html" data-nav="calc-ups">Расчёт ИБП</a></li>
       <li><a href="./#strip" data-nav="delivery">Доставка и оплата</a></li>
       <li><a href="about.html" data-nav="about" aria-current="page">О компании</a></li>
       <li><a href="news.html" data-nav="news">Новости</a></li>
@@ -118,22 +120,22 @@
         <p class="svc-hero__lead">Поставляем видеонаблюдение, ИБП, сетевое оборудование и системы контроля доступа. Отгружаем со своего склада в Ташкенте и отправляем по Узбекистану.</p>
         <div class="svc-hero__actions">
           <a class="btn btn--lime" href="catalog.html">Перейти в каталог<svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14" /> <path d="m12 5 7 7-7 7" /></svg></a>
+          <a class="btn btn--line" href="files/digitech-o-kompanii.pdf" download><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" /> <path d="M14 2v5a1 1 0 0 0 1 1h5" /> <path d="M12 18v-6" /> <path d="m9 15 3 3 3-3" /></svg>Презентация о компании и объектах (PDF, 3,4 МБ)</a>
         </div>
       </div>
       <figure class="svc-hero__pic"><img src="img/about-warehouse-1000.webp" srcset="img/about-warehouse-700.webp 700w, img/about-warehouse-1000.webp 1000w" sizes="(min-width: 961px) 640px, 100vw" width="1000" height="558" alt="Проход между стеллажами склада с коробками оборудования" fetchpriority="high"></figure>
     </section>
 
-    <p class="done__mock about-page__mock">Образец страницы: подробный текст о компании и сканы сертификатов пришлёт клиент. Сейчас здесь только то, что уже есть на сайте.</p>
-
     <section class="about-block about-block--intro" aria-labelledby="about-who">
       <div class="about-block__text">
         <h2 class="h2" id="about-who">Кто мы</h2>
-        <p>Больше 20 лет работаем на рынке систем безопасности. В компании два отдела. Коммерческий подбирает оборудование и выставляет счёт. Технический проектирует системы, монтирует их и берёт на обслуживание.</p>
-        <p class="todo">[Подробный текст о компании: история, объекты, команда — пришлёт клиент]</p>
+        <p>Работаем на рынке систем безопасности с 2003 года. В компании два отдела. Коммерческий подбирает оборудование и выставляет счёт. Технический проектирует системы, монтирует их и берёт на обслуживание.</p>
+        <p>Проекты и монтаж ведёт наша инженерная компания DIGITAL SERVIS PLUS. Объект берём целиком: проект и смета, поставка оборудования, монтаж, пусконаладка и сдача в эксплуатацию. Делаем пожарную сигнализацию и пожаротушение, видеонаблюдение, контроль доступа и домофонию, сети и диспетчеризацию лифтов. Работаем на оборудовании BOLID, RUBEZH, Hikvision и Dahua.</p>
+        <p>Из крупных объектов: жилые комплексы INFINITI, GREENWICH, Assalom Havo, Parisien, Династия, Regnum Plaza и Soy Bo’yi, бизнес-центр ORIENT. Сейчас в работе ЖК Obod Maskan и Musaffo. Небольших объектов за эти годы больше 70.</p>
       </div>
       <dl class="about__facts">
         <div><dt>20+ лет</dt><dd>на рынке систем безопасности</dd></div>
-        <div><dt>2 отдела</dt><dd>коммерческий и технический</dd></div>
+        <div><dt>42 сотрудника</dt><dd>в штате, из них две монтажные бригады</dd></div>
         <div><dt>Склад</dt><dd>в Ташкенте, ул. Нукус</dd></div>
       </dl>
     </section>
@@ -154,10 +156,15 @@
     <section class="about-block" aria-labelledby="about-certs">
       <h2 class="h2" id="about-certs">Сертификаты</h2>
       <ul class="certs">
-        <li class="cert-slot"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526" /> <circle cx="12" cy="8" r="6" /></svg><b>Сертификат</b><span>Место для скана: пришлёт клиент</span></li>
-        <li class="cert-slot"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526" /> <circle cx="12" cy="8" r="6" /></svg><b>Сертификат</b><span>Место для скана: пришлёт клиент</span></li>
-        <li class="cert-slot"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526" /> <circle cx="12" cy="8" r="6" /></svg><b>Сертификат</b><span>Место для скана: пришлёт клиент</span></li>
-        <li class="cert-slot"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526" /> <circle cx="12" cy="8" r="6" /></svg><b>Сертификат</b><span>Место для скана: пришлёт клиент</span></li>
+        <li><a href="img/certs/iso-9001.jpg" target="_blank" rel="noopener"><img src="img/certs/iso-9001-600.webp" width="425" height="600" alt="Скан: ISO 9001:2015. Система менеджмента качества, действует до 09.09.2029" loading="lazy"></a><p class="certs__caption"><b>ISO 9001:2015</b><span>Система менеджмента качества, действует до 09.09.2029</span></p></li>
+        <li><a href="img/certs/iso-14001.jpg" target="_blank" rel="noopener"><img src="img/certs/iso-14001-600.webp" width="425" height="600" alt="Скан: ISO 14001:2015. Экологический менеджмент, действует до 09.09.2029" loading="lazy"></a><p class="certs__caption"><b>ISO 14001:2015</b><span>Экологический менеджмент, действует до 09.09.2029</span></p></li>
+        <li><a href="img/certs/iso-45001.jpg" target="_blank" rel="noopener"><img src="img/certs/iso-45001-600.webp" width="425" height="600" alt="Скан: ISO 45001:2018. Охрана труда, действует до 09.09.2029" loading="lazy"></a><p class="certs__caption"><b>ISO 45001:2018</b><span>Охрана труда, действует до 09.09.2029</span></p></li>
+        <li><a href="img/certs/hikvision.jpg" target="_blank" rel="noopener"><img src="img/certs/hikvision-600.webp" width="600" height="425" alt="Скан: Hikvision. Проектирование, монтаж и обслуживание оборудования Hikvision, до 31.12.2026" loading="lazy"></a><p class="certs__caption"><b>Hikvision</b><span>Проектирование, монтаж и обслуживание оборудования Hikvision, до 31.12.2026</span></p></li>
+        <li><a href="img/certs/rubezh-diler.jpg" target="_blank" rel="noopener"><img src="img/certs/rubezh-diler-600.webp" width="600" height="425" alt="Скан: RUBEZH. Официальный дилер, до 31.12.2026" loading="lazy"></a><p class="certs__caption"><b>RUBEZH</b><span>Официальный дилер, до 31.12.2026</span></p></li>
+        <li><a href="img/certs/natsgvardiya-ohrana.jpg" target="_blank" rel="noopener"><img src="img/certs/natsgvardiya-ohrana-600.webp" width="425" height="600" alt="Скан: Национальная гвардия. Уведомление о монтаже и обслуживании охранных систем" loading="lazy"></a><p class="certs__caption"><b>Национальная гвардия</b><span>Уведомление о монтаже и обслуживании охранных систем</span></p></li>
+        <li><a href="img/certs/natsgvardiya-pozhar.jpg" target="_blank" rel="noopener"><img src="img/certs/natsgvardiya-pozhar-600.webp" width="425" height="600" alt="Скан: Национальная гвардия. Уведомление о монтаже и обслуживании пожарной сигнализации и пожаротушения" loading="lazy"></a><p class="certs__caption"><b>Национальная гвардия</b><span>Уведомление о монтаже и обслуживании пожарной сигнализации и пожаротушения</span></p></li>
+        <li><a href="img/certs/assotsiatsiya-stroiteley.jpg" target="_blank" rel="noopener"><img src="img/certs/assotsiatsiya-stroiteley-600.webp" width="425" height="600" alt="Скан: Ассоциация строителей Узбекистана. Свидетельство члена ассоциации" loading="lazy"></a><p class="certs__caption"><b>Ассоциация строителей Узбекистана</b><span>Свидетельство члена ассоциации</span></p></li>
+        <li><a href="img/certs/rubezh-obuchenie.jpg" target="_blank" rel="noopener"><img src="img/certs/rubezh-obuchenie-600.webp" width="600" height="425" alt="Скан: RUBEZH. Обучение: проектирование пожарной и охранной сигнализации, СКУД, 2023" loading="lazy"></a><p class="certs__caption"><b>RUBEZH</b><span>Обучение: проектирование пожарной и охранной сигнализации, СКУД, 2023</span></p></li>
       </ul>
     </section>
 

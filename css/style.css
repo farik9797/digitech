@@ -147,7 +147,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .nav__cart .icon { width: 20px; height: 20px; }
 .nav__badge { min-width: 22px; height: 22px; padding: 0 6px; border-radius: 999px; background: var(--blue); color: var(--white); font-size: 12px; font-weight: 700; line-height: 22px; text-align: center; }
 @media (min-width: 961px) { .header__cart { display: none; } }
-.nav a { display: inline-flex; align-items: center; min-height: 48px; padding: 0 16px; font-weight: 600; font-size: 15px; text-decoration: none; transition: color 0.2s var(--ease); }
+.nav a { display: inline-flex; align-items: center; min-height: 48px; padding: 0 16px; font-weight: 600; font-size: 15px; white-space: nowrap; text-decoration: none; transition: color 0.2s var(--ease); }
+@media (min-width: 961px) and (max-width: 1279px) { .nav ul { gap: 0; margin-inline-start: -8px; } .nav a { padding: 0 8px; font-size: 14px; } }
 .nav a:hover { color: var(--blue); }
 .nav a[aria-current="page"] { color: var(--blue); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 8px; }
 
@@ -981,7 +982,6 @@ button.link { border: 0; background: none; padding: 0; font: inherit; font-weigh
 
 /* ---------- о компании (about.html, в WP — page-about.php) ---------- */
 .about-page { padding-top: 20px; padding-bottom: var(--section); }
-.about-page__mock { margin-top: 24px; }
 .about-block { margin-top: var(--section); }
 .about-block > .h2 { margin-bottom: 24px; }
 .about-block--intro { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 48px; align-items: start; }
@@ -992,13 +992,12 @@ button.link { border: 0; background: none; padding: 0; font: inherit; font-weigh
 .about-dirs { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; list-style: none; }
 .about-dirs .cat-tile { height: 100%; }
 .about-block__note { margin-top: 16px; color: var(--ink-2); }
-.certs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; list-style: none; }
-.certs img { width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: contain; border: 1px solid var(--line); border-radius: var(--r-card); background: var(--white); }
-.certs__caption { margin-top: 8px; font-size: 14px; color: var(--ink-2); }
-.cert-slot { display: grid; place-content: center; justify-items: center; gap: 8px; aspect-ratio: 3 / 4; padding: 20px; border: 1px dashed var(--line-2); border-radius: var(--r-card); background: var(--bg); color: var(--muted); text-align: center; }
-.cert-slot .icon { width: 36px; height: 36px; color: var(--line-2); }
-.cert-slot b { color: var(--ink-2); }
-.cert-slot span { font-size: 13px; }
+.certs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px 24px; list-style: none; }
+.certs a { display: block; border-radius: var(--r-card); }
+.certs img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: contain; padding: 16px; border: 1px solid var(--line); border-radius: var(--r-card); background: var(--bg); transition: border-color 0.2s var(--ease); }
+.certs a:hover img { border-color: var(--blue); }
+.certs__caption { display: grid; gap: 2px; margin-top: 10px; font-size: 14px; line-height: 1.4; color: var(--ink-2); }
+.certs__caption b { font-size: 15px; color: var(--ink); }
 .about-contacts__list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; list-style: none; }
 .about-contacts__list li { display: flex; gap: 14px; padding: 18px; border: 1px solid var(--line); border-radius: var(--r-card); }
 .about-contacts__list .icon { flex-shrink: 0; color: var(--blue); }
