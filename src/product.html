@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=32">
+<link rel="stylesheet" href="css/style.css?v=33">
 <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -58,6 +58,14 @@
             <button class="btn btn--blue pp__ask" type="button" data-open-dialog="dlg-consult" data-p-ask hidden>Запросить цену</button>
           </div>
           <button class="btn btn--line pp__consult" type="button" data-open-dialog="dlg-consult" data-topic="Консультация по товару ELT-811 TWO-PASS KIT" data-p-consult>Получить консультацию</button>
+          <!-- Telegram по отделам (просьба клиента, как на kss.uz): текст с товаром, ценой и ссылкой подставляет product.js. Ники отделов в WP — «Настройки → Компания». -->
+          <div class="pp-tg">
+            <p class="pp-tg__label"><i data-icon="telegram"></i>Написать в Telegram, сообщение о товаре уже готово</p>
+            <div class="pp-tg__btns">
+              <a class="btn btn--line btn--sm" href="https://t.me/Mao0070" target="_blank" rel="noopener" data-tg="sales">Коммерческий отдел</a>
+              <a class="btn btn--line btn--sm" href="https://t.me/Mao0070" target="_blank" rel="noopener" data-tg="tech">Технический отдел</a>
+            </div>
+          </div>
         </div>
 
         <ul class="pp__service">
@@ -209,7 +217,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script src="js/products-data.js?v=2" defer></script>
-<script src="js/product.js?v=7" defer></script>
+<script src="js/products-hik.js?v=1" defer></script>
+<script src="js/products-hik-detail.js?v=1" defer></script>
+<script src="js/product.js?v=8" defer></script>
 <script src="js/cart.js?v=1" defer></script>
 <script src="js/checkout.js?v=5" defer></script>
 <script src="js/site.js?v=19" defer></script>

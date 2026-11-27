@@ -226,7 +226,13 @@
     const pager = $('[data-pager]');
     pager.replaceChildren();
     pager.hidden = pages < 2;
+    // первая, последняя и две соседние с текущей; пропуски — «…»
+    const show = (i) => i === 1 || i === pages || Math.abs(i - s.page) <= 2;
     for (let i = 1; i <= pages && pages > 1; i += 1) {
+      if (!show(i)) {
+        if (show(i - 1)) { const gap = document.createElement('span'); gap.className = 'pager__gap'; gap.textContent = '…'; gap.setAttribute('aria-hidden', 'true'); pager.append(gap); }
+        continue;
+      }
       if (i === s.page) {
         const span = document.createElement('span'); span.setAttribute('aria-current', 'page'); span.textContent = String(i); pager.append(span);
       } else {

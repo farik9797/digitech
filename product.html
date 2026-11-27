@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=32">
+<link rel="stylesheet" href="css/style.css?v=33">
 <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -98,6 +98,7 @@
       <li><a href="./#strip" data-nav="delivery">Доставка и оплата</a></li>
       <li><a href="about.html" data-nav="about">О компании</a></li>
       <li><a href="news.html" data-nav="news">Новости</a></li>
+      <li><a href="support.html" data-nav="support">Поддержка</a></li>
       <li><a href="contacts.html" data-nav="contacts">Контакты</a></li>
       <li class="nav__cart"><a href="cart.html" data-cart-open><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m2.05 2.05 1.099-.028a1 1 0 0 1 1.008.815l2.69 14.347A1 1 0 0 0 7.83 18H18" /> <path d="M4.563 5h16.435a1 1 0 0 1 .981 1.204l-1.026 6.226A2 2 0 0 1 18.962 14H6.25" /> <circle cx="18" cy="20" r="2" /> <circle cx="8" cy="20" r="2" /></svg>Корзина<span class="nav__badge" data-cart-count>0</span></a></li>
     </ul>
@@ -145,6 +146,14 @@
             <button class="btn btn--blue pp__ask" type="button" data-open-dialog="dlg-consult" data-p-ask hidden>Запросить цену</button>
           </div>
           <button class="btn btn--line pp__consult" type="button" data-open-dialog="dlg-consult" data-topic="Консультация по товару ELT-811 TWO-PASS KIT" data-p-consult>Получить консультацию</button>
+          <!-- Telegram по отделам (просьба клиента, как на kss.uz): текст с товаром, ценой и ссылкой подставляет product.js. Ники отделов в WP — «Настройки → Компания». -->
+          <div class="pp-tg">
+            <p class="pp-tg__label"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>Написать в Telegram, сообщение о товаре уже готово</p>
+            <div class="pp-tg__btns">
+              <a class="btn btn--line btn--sm" href="https://t.me/Mao0070" target="_blank" rel="noopener" data-tg="sales">Коммерческий отдел</a>
+              <a class="btn btn--line btn--sm" href="https://t.me/Mao0070" target="_blank" rel="noopener" data-tg="tech">Технический отдел</a>
+            </div>
+          </div>
         </div>
 
         <ul class="pp__service">
@@ -319,6 +328,7 @@
           <li><a href="calc-archive.html">Расчёт архива</a></li>
           <li><a href="about.html">О компании</a></li>
           <li><a href="news.html">Новости</a></li>
+          <li><a href="support.html">Поддержка</a></li>
           <li><a href="./#strip">Доставка и оплата</a></li>
           <li><a href="./#features">Гарантия</a></li>
         </ul>
@@ -458,7 +468,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script src="js/products-data.js?v=2" defer></script>
-<script src="js/product.js?v=7" defer></script>
+<script src="js/products-hik.js?v=1" defer></script>
+<script src="js/products-hik-detail.js?v=1" defer></script>
+<script src="js/product.js?v=8" defer></script>
 <script src="js/cart.js?v=1" defer></script>
 <script src="js/checkout.js?v=5" defer></script>
 <script src="js/site.js?v=19" defer></script>

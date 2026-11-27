@@ -25,6 +25,8 @@
 
   const slug = new URLSearchParams(location.search).get('m') || 'elt-811-two-pass-kit';
   const p = data.find((x) => x.slug === slug);
+  // Характеристики Hikvision лежат отдельно (js/products-hik-detail.js), чтобы не грузить их на каждой странице
+  if (p && window.DT_DETAILS && window.DT_DETAILS[p.slug]) Object.assign(p, window.DT_DETAILS[p.slug]);
 
   if (!p) {
     $$('[data-p-found]').forEach((el) => { el.hidden = true; });
@@ -71,6 +73,7 @@
     }
     const img = new Image(800, 600);
     img.src = src; img.alt = full(p); img.decoding = 'async';
+    if (p.small) img.className = 'is-small'; // миниатюра из прайса: не растягиваем
     main.append(img);
   };
   showImg(p.img[0]);
@@ -109,6 +112,17 @@
     ask.hidden = false;
     ask.dataset.topic = `Цена: ${full(p)}`;
   }
+
+  // Telegram по отделам: ник берём из ссылки (в WP его ставит тема), текст собираем здесь
+  const link = new URL(`product.html?m=${p.slug}`, location.href).href;
+  const tgText = {
+    sales: `Здравствуйте! Хочу заказать: ${full(p)}\nЦена на сайте: ${p.price > 0 ? money(p.price) : 'по запросу'}\n${link}`,
+    tech: `Здравствуйте! Вопрос инженеру по товару: ${full(p)}\n${link}`,
+  };
+  $$('[data-tg]').forEach((a) => {
+    const user = new URL(a.href).pathname.replace(/\//g, '');
+    a.href = `https://t.me/${user}?text=${encodeURIComponent(tgText[a.dataset.tg])}`;
+  });
 
   // Количество 1–999. Если товар уже в корзине, число в корзине меняется вместе с ним (js/cart.js)
   const qty = $('#qty');
@@ -150,6 +164,8 @@
   } else {
     pdfBtn.addEventListener('click', (e) => e.preventDefault());
   }
+  // Нет ни текста, ни PDF (товары из прайса Hikvision) — вкладки «Описание» нет, первой открываются характеристики
+  if (!p.text && !p.pdf) $$('[data-p-desc]').forEach((el) => { el.hidden = true; });
 
   // ---- Карточки: сопутствующие — из родственных разделов (камере — сеть и ИБП), похожие — из того же раздела; по 4.
   // Родственные разделы как на текущем сайте (categoryAffinity). В WordPress сопутствующие можно задать вручную у товара.
@@ -157,7 +173,7 @@
   const card = (x) => {
     const li = tpl.content.firstElementChild.cloneNode(true);
     const img = $('img', li);
-    if (x.img[0]) { img.src = x.img[0]; img.alt = full(x); $('.product__noimg', li).remove(); } else { img.remove(); $('.product__noimg', li).hidden = false; }
+    if (x.img[0]) { img.src = x.img[0]; img.alt = full(x); if (x.small) img.classList.add('is-small'); $('.product__noimg', li).remove(); } else { img.remove(); $('.product__noimg', li).hidden = false; }
     const [st, tone] = STOCK[x.stock] || STOCK.in;
     const status = $('.status', li); status.textContent = st; status.className = `status status--${tone}`;
     const br = $('.product__brand', li); if (x.brand) br.textContent = x.brand; else br.remove();
@@ -176,7 +192,7 @@
   $('[data-p-acclist]').replaceChildren(...acc.map(card));
   $$('[data-p-acc]').forEach((el) => { el.hidden = !acc.length; });
 
-  const similar = data.filter((x) => x.slug !== p.slug && x.cat === p.cat).slice(0, 4);
+  const similar = data.filter((x) => x.slug !== p.slug && x.cat === p.cat).sort((a, b) => (b.sub === p.sub) - (a.sub === p.sub)).slice(0, 4);
   $('[data-p-list]').replaceChildren(...similar.map(card));
   $('[data-p-catlink]').href = `catalog.html?cat=${p.cat}`;
   $('[data-p-related]').hidden = !similar.length;
